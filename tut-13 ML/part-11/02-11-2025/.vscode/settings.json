@@ -1,0 +1,7 @@
+{
+    "window.zoomLevel": 1,
+    "terminal.integrated.mouseWheelZoom": true,
+    "editor.mouseWheelZoom": true,
+    "files.autoSaveWhenNoErrors": true,
+    "files.autoSaveWorkspaceFilesOnly": false
+}
