@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs
+logs/
+*.log
+
+# Model files
+models/
+pred_images/
+
+# Virtual Environment
+venv/
+.env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+IMPLEMENTATION_SUMMARY.md
+tasks.md
+test_implementation.py
+BUG_FIX_SUMMARY.md
+yolo26n-cls.pt
+test_models.py
+yolo26n.pt
+yolo26n-seg.pt
+.claude

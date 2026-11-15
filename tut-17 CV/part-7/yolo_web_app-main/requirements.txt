@@ -1,0 +1,30 @@
+# Web interface
+streamlit
+
+# Computer Vision and Image Processing
+opencv-python
+Pillow
+#ultralytics
+
+# Scientific Computing
+#numpy
+
+# Deep Learning
+#torch
+#torchvision
+
+# Model Download and Progress Bar
+requests
+tqdm
+
+# Logging
+python-json-logger
+
+
+# Production Deployment
+gunicorn
+uvicorn
+
+# Optional: GPU Support
+# torch
+# torchvision
