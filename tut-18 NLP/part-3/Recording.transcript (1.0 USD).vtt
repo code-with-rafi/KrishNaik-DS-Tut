@@ -1,0 +1,3394 @@
+WEBVTT
+
+1
+00:10:18.380 --> 00:10:22.509
+Krish NAik: Hello everyone, am I audible? Okay, please let me in the chat.
+
+2
+00:10:22.950 --> 00:10:27.850
+Krish NAik: Let me just open the chat, so I think it is disabled host and panelistics.
+
+3
+00:10:31.370 --> 00:10:33.050
+Krish NAik: Correct.
+
+4
+00:10:34.340 --> 00:10:42.990
+Krish NAik: So, in the last class, we have discussed, major topics. Okay, so the last two classes were very important.
+
+5
+00:10:43.490 --> 00:10:53.669
+Krish NAik: And, right now, we have built a core foundational, I can say, the component of Transformers.
+
+6
+00:10:53.790 --> 00:10:55.349
+Krish NAik: No?
+
+7
+00:10:55.510 --> 00:11:00.469
+Krish NAik: We'll be going through the main paper. The attention is all you need.
+
+8
+00:11:00.670 --> 00:11:08.730
+Krish NAik: This will be the core fundamental. And with that, we'll be going through the other one. The content will be the…
+
+9
+00:11:09.990 --> 00:11:12.190
+Krish NAik: the Illustrated Transformer.
+
+10
+00:11:15.660 --> 00:11:18.030
+Krish NAik: Okay, so these two things.
+
+11
+00:11:21.040 --> 00:11:27.010
+Krish NAik: Alright, so first of all, from this, particular perspective, we'll start today.
+
+12
+00:11:28.210 --> 00:11:37.910
+Krish NAik: Alright, so let's, give a quick recap of yesterday, what we have discussed, and then we will start with the other components in the network.
+
+13
+00:11:38.520 --> 00:11:42.139
+Krish NAik: So, let me, just get back to the notes.
+
+14
+00:11:45.700 --> 00:11:46.390
+Krish NAik: Wonderful.
+
+15
+00:11:52.060 --> 00:11:52.890
+Krish NAik: Product.
+
+16
+00:11:56.700 --> 00:12:09.900
+Krish NAik: Okay, alright. So yesterday, the cell retention idea, okay, so we discussed very specifically the re-welling scheme that we have been discussing the last Sunday.
+
+17
+00:12:10.080 --> 00:12:23.229
+Krish NAik: Okay, the idea is to create better contextualized vectors, and through self-attention, we can do that. So, similarly, what we were doing, it was a simple task where you used to multiply vectors.
+
+18
+00:12:23.230 --> 00:12:31.759
+Krish NAik: with vector, and based on that, you'll be getting a value, that value needs to be normalized, and finally, that is referred as the final bits.
+
+19
+00:12:32.280 --> 00:12:41.169
+Krish NAik: So, initially, once you have your final weights, now you can multiply them with your initial vectors. So, from there, what you'll be getting?
+
+20
+00:12:41.910 --> 00:12:44.740
+Krish NAik: contextualized vectors, which is finally the Y.
+
+21
+00:12:52.510 --> 00:12:55.520
+Krish NAik: Alright, now, Animesh, you were asking…
+
+22
+00:12:58.990 --> 00:13:09.040
+Krish NAik: Okay. Generally, like, whenever you apply sort max, the final… the logits are basically the final probability values that you do get.
+
+23
+00:13:10.130 --> 00:13:13.219
+Krish NAik: And all of those logits will add up to 1.
+
+24
+00:13:14.280 --> 00:13:19.859
+Krish NAik: What about the multiple classes? In logistic reservation, only two things. That becomes pretty much binary stuff.
+
+25
+00:13:21.310 --> 00:13:24.119
+Krish NAik: Okay, alright.
+
+26
+00:13:24.630 --> 00:13:40.279
+Krish NAik: Got it, now let's focus on the topic later on, I will come to that. So, right now, as we were, rewigging all the vectors towards our V1, V2, V3, V4, okay, so in this particular example.
+
+27
+00:13:40.280 --> 00:13:47.219
+Krish NAik: The main idea is how we generated the re-wegging scheme, and the main purpose was by introducing the same vectors.
+
+28
+00:13:47.220 --> 00:14:02.999
+Krish NAik: Now, what were the main benefits? I have not trained any external weights into the system. Here, order has no influence, proximity also has no influence, and it's pretty much self-independent. You can introduce as many vectors as you can into the system.
+
+29
+00:14:04.270 --> 00:14:14.229
+Krish NAik: Then, so this is the other representation, the same way that we have done it, but here we introduce the idea of
+
+30
+00:14:14.360 --> 00:14:28.480
+Krish NAik: three things. Keys, queries, and values. Okay, so from a database analogy, though that database analogy exactly doesn't hold here, but you can take an assumption or an intuition through that.
+
+31
+00:14:28.480 --> 00:14:39.840
+Krish NAik: So, initially, it will be your MK. Right now, I've taken as MK. In the other blog, it was, like, WK, okay? So this is your, key metrics right now.
+
+32
+00:14:43.040 --> 00:14:50.879
+Krish NAik: with each factor that you are attaching. Similarly, you have your query matrix, and finally, your value matrix.
+
+33
+00:14:51.780 --> 00:14:57.820
+Krish NAik: Now, what is the purpose of this, what is the purpose of introducing matrix?
+
+34
+00:14:58.990 --> 00:15:01.240
+Krish NAik: All this key query and values.
+
+35
+00:15:01.400 --> 00:15:03.149
+Krish NAik: Through that, what we can achieve.
+
+36
+00:15:06.770 --> 00:15:20.289
+Krish NAik: learning, exactly correct. Because other than that, there was no other way to bring, because whenever in deep learning, we need to introduce weights and biases. But don't get confused, this weight is different.
+
+37
+00:15:20.850 --> 00:15:24.809
+Krish NAik: Okay? So here is nothing related to weights and biases.
+
+38
+00:15:24.930 --> 00:15:32.369
+Krish NAik: But actually, to introduce a learning mechanism, we need to bring external weights and biases into the system.
+
+39
+00:15:33.720 --> 00:15:48.690
+Krish NAik: Okay, and alright. Then finally, your self-attention block that we derived, so where, from network point of view, we introduced, like, linear layers, very specifically for keys, for queries.
+
+40
+00:15:48.740 --> 00:15:58.780
+Krish NAik: And finally, values, then the operations team, like matmel, normalize, and finally, value with matmel. And finally, based on that, we used to get our…
+
+41
+00:15:58.840 --> 00:16:00.470
+Krish NAik: Contextualized vectors.
+
+42
+00:16:01.090 --> 00:16:18.439
+Krish NAik: Now, the idea was very similar. You can have multiple self-attention blocks. Okay, and if you have introduced these linears into the system, then similarly, like, the gradient flow, that you will be getting, which will help you to create some type of learning-based mechanisms.
+
+43
+00:16:19.720 --> 00:16:29.519
+Krish NAik: Now, in the next question, like, do we have enough attention? Okay, now, from this idea, we've brought the concept of multi-aid attention into the system.
+
+44
+00:16:29.600 --> 00:16:48.759
+Krish NAik: Okay, so here, what we introduced, we introduced more linear layers. Okay, and these linear layers are parallel and independent, there is no weight sharing among them, okay? So similarly for key queries, rest of the architecture is pretty much the same, only difference is, here, from the mat model, you used to get multiple outputs for each head.
+
+45
+00:16:48.950 --> 00:16:55.860
+Krish NAik: Okay? But we need to maintain the input dimension, so the input and the output dimension needs to be matched.
+
+46
+00:16:55.940 --> 00:17:11.549
+Krish NAik: So, in that case, what we did, so first we performed a concatenation of the various outputs of multiple heads, and then we passed it through a dense layer. Okay, through that, we achieved our final dimension as per the input vector dimensions.
+
+47
+00:17:12.410 --> 00:17:15.779
+Krish NAik: Similarly, here, we can have multiple heads.
+
+48
+00:17:15.950 --> 00:17:24.449
+Krish NAik: Okay, and the concept lies saying, like, through gradient signal, you can, do a back propagation.
+
+49
+00:17:25.130 --> 00:17:34.350
+Krish NAik: Alright, now let's, as this part is done, little bit, let's talk about the first thing inside the paper, okay?
+
+50
+00:17:35.120 --> 00:17:41.779
+Krish NAik: So let me just, get the image from the paper, and I will paste it here.
+
+51
+00:18:15.720 --> 00:18:18.459
+Krish NAik: Alright, I think it is visible for everyone.
+
+52
+00:18:23.810 --> 00:18:25.670
+Krish NAik: Now,
+
+53
+00:18:26.300 --> 00:18:34.790
+Krish NAik: I'll be breaking into two things. The first, we'll be talking about the encoder stuff, and then finally, we'll be talking about the decoder stuff.
+
+54
+00:18:35.210 --> 00:18:41.900
+Krish NAik: Okay? So, if I try to differentiate it simply from this particular block, this is your N.
+
+55
+00:18:42.090 --> 00:18:43.900
+Krish NAik: Okay, and this is your D.
+
+56
+00:18:44.500 --> 00:18:46.820
+Krish NAik: Okay, the encoder and the decoder.
+
+57
+00:18:48.310 --> 00:18:59.460
+Krish NAik: don't get confused, like, English to German, yes, that is the main task that we are doing, but this is your encoder and decoder stuff. So, we will try to break these two things into two separate parts.
+
+58
+00:19:01.550 --> 00:19:08.389
+Krish NAik: So, first of all, let me get only the encoder stuff, first of all.
+
+59
+00:19:47.900 --> 00:19:58.930
+Krish NAik: Now, so first of all, let's see what are the things that are happening, and what are the things that are unknown to us, okay? So, first of all, you have your inputs.
+
+60
+00:19:59.860 --> 00:20:03.760
+Krish NAik: Okay, now these inputs, you are creating input embeddings.
+
+61
+00:20:04.310 --> 00:20:13.130
+Krish NAik: Okay? With those input embeddings, you are adding positional encodings, for now. So, positional encodings, actually, through that, you can
+
+62
+00:20:13.320 --> 00:20:21.250
+Krish NAik: Add the benefit of… Maintaining the position. It means that in any type of text.
+
+63
+00:20:21.430 --> 00:20:28.370
+Krish NAik: I can say, order… as… Influence.
+
+64
+00:20:30.890 --> 00:20:34.360
+Krish NAik: Okay, now to maintain that order, we need positions.
+
+65
+00:20:38.080 --> 00:20:42.770
+Krish NAik: Okay? If you remember, yesterday I have written one very important thing.
+
+66
+00:20:44.160 --> 00:20:46.189
+Krish NAik: when I discuss cell potential.
+
+67
+00:20:46.610 --> 00:20:48.559
+Krish NAik: Order has no influence.
+
+68
+00:20:49.710 --> 00:20:55.519
+Krish NAik: Okay, but, whenever you are working with tags, the order, actually matters.
+
+69
+00:20:55.630 --> 00:21:05.309
+Krish NAik: So, for example, which word comes first, what is the second word after that? Then, through that, you can always tag, track the grammatical syntax of any type of language.
+
+70
+00:21:06.300 --> 00:21:13.200
+Krish NAik: Okay, so the idea is that we will be pushing that order influence. Okay, so for now.
+
+71
+00:21:13.840 --> 00:21:23.219
+Krish NAik: Just think about through positional encodings. So, what is simple, like, positional encodings? So, simple ituition, later on I will go into the depth.
+
+72
+00:21:24.140 --> 00:21:28.770
+Krish NAik: Let's take our… Positional encodings.
+
+73
+00:21:29.640 --> 00:21:30.849
+Krish NAik: P for now.
+
+74
+00:21:32.190 --> 00:21:34.489
+Krish NAik: So, you have your actual embeddings.
+
+75
+00:21:46.160 --> 00:21:48.789
+Krish NAik: And this is used in both the cases, okay?
+
+76
+00:21:49.000 --> 00:22:05.799
+Krish NAik: So, for example, even in the decoder side, you have positional encodings, as well as in the encoder side also. Because in the decoder side, whichever the language that you are feeding, probably, like, English to German, or German to English, whichever. So, like, if here English is going English language.
+
+77
+00:22:06.250 --> 00:22:08.890
+Krish NAik: to this site, if Germany's going.
+
+78
+00:22:09.640 --> 00:22:15.440
+Krish NAik: Okay, so then the German language, position of tokens are also important.
+
+79
+00:22:15.910 --> 00:22:21.240
+Krish NAik: Now here, when I say… okay, so over here.
+
+80
+00:22:22.620 --> 00:22:25.960
+Krish NAik: Now, with that, I'll be adding another vector.
+
+81
+00:22:33.000 --> 00:22:39.849
+Krish NAik: Which is our, like, positional encoding, vector, so this is pretty much your…
+
+82
+00:22:40.040 --> 00:22:48.150
+Krish NAik: PEV for now. Okay, and finally, we try to add them up. What we'll be getting? Your final.
+
+83
+00:22:48.500 --> 00:22:50.330
+Krish NAik: Position and codings.
+
+84
+00:22:53.800 --> 00:23:00.979
+Krish NAik: Now, there are multiple ways you can use, hard-coded functions. Okay, here…
+
+85
+00:23:01.180 --> 00:23:15.060
+Krish NAik: In some cases, they use backpropagation to learn these through weights. That is also possible, but for now, as in the paper, they will be talking with respect to periodical functions.
+
+86
+00:23:15.230 --> 00:23:21.310
+Krish NAik: Okay, based on position. So, later on, I'll be coming to that part. And periodical functions, what are periodical functions?
+
+87
+00:23:24.590 --> 00:23:27.970
+Krish NAik: What is the simplest example of periodic function, guys?
+
+88
+00:23:33.340 --> 00:23:34.300
+Krish NAik: Correct.
+
+89
+00:23:34.940 --> 00:23:36.100
+Krish NAik: Sign.
+
+90
+00:23:36.300 --> 00:23:52.490
+Krish NAik: cause anything, okay? So in the original paper, they have that particular formula, so I will try to bring that later on. But for now, with respect to your actual embeddings, you have another vector where you track the positions of those particular tokens, and finally, based on that, you have your final encodings.
+
+91
+00:23:52.720 --> 00:24:02.150
+Krish NAik: Alright, now, let's just focus on this part, because you guys already know this multi-head attention, okay? Now, when you see here, okay.
+
+92
+00:24:02.170 --> 00:24:14.870
+Krish NAik: right here, your actual embeddings with that, the positional encoding that you have attached, and now you know the position of each token there. Now, from here, can you see this one part that you have?
+
+93
+00:24:15.160 --> 00:24:18.469
+Krish NAik: Can I say the same input is going in two places?
+
+94
+00:24:19.140 --> 00:24:26.839
+Krish NAik: One is your multi-detection, and then again, in the next step, add plus normal, addition plus normalization step.
+
+95
+00:24:26.840 --> 00:24:39.889
+Krish NAik: So, whatever the output that comes from the multi-head, that needs to be added, because from multiple heads, it will be coming. So, first, add means concatenation. After concatenation, a simple normalization operation that you are trying to do.
+
+96
+00:24:40.040 --> 00:24:46.139
+Krish NAik: So, when you do this thing, so, which concept comes to your mind? Quickly tell me. First.
+
+97
+00:24:50.400 --> 00:24:55.399
+Krish NAik: Don't tell me, okay, Jonas, that is correct, ma, according to the definition, but simple.
+
+98
+00:24:56.190 --> 00:24:58.540
+Krish NAik: Sinosaurils was… I was looking for.
+
+99
+00:24:59.680 --> 00:25:04.340
+Krish NAik: Ratik Kumar is telling Pulling. How pulling comes into the picture? I was looking for ResNet.
+
+100
+00:25:04.560 --> 00:25:07.480
+Krish NAik: In Resident, there was something called escape connection.
+
+101
+00:25:09.300 --> 00:25:10.700
+Krish NAik: If you remember.
+
+102
+00:25:11.550 --> 00:25:14.379
+Krish NAik: FX plus X that I used to do.
+
+103
+00:25:16.110 --> 00:25:24.969
+Krish NAik: You guys forget it. Alright. Now, see, the main idea is that from here it's going, so if I try to attach this, so what is the added benefit?
+
+104
+00:25:29.270 --> 00:25:37.830
+Krish NAik: what is the added benefit, first of all, tell me, when I try to do this. And just think from ResNet perspective, if I'm talking about a skip connection.
+
+105
+00:25:38.760 --> 00:25:52.610
+Krish NAik: We keep the original input exactly correct. It means whatever the input that comes here, after processing, through multi-head attention, for sure there will be some amount of information loss on top of your original input. I can say that
+
+106
+00:25:53.330 --> 00:25:54.590
+Krish NAik: Yes or no?
+
+107
+00:25:55.470 --> 00:26:08.709
+Krish NAik: later on, because of that information loss, again, on top of that, if you try to add back the same one, so during backpropagation, will it help or not? The main purpose that I was looking for, which is VG.
+
+108
+00:26:09.600 --> 00:26:12.860
+Krish NAik: Vanishing gradient, guys. Always remember.
+
+109
+00:26:21.100 --> 00:26:24.930
+Krish NAik: This is the main purpose, why we are adding that.
+
+110
+00:26:26.430 --> 00:26:41.829
+Krish NAik: Just like in Resonate, we have done it, okay? It means that the original FX plus X, that same thing, just like in Resonate, we try to do the skip connection information the same way. Now, what is the added benefit? It means that during your backpropagation, there won't be any type of problems.
+
+111
+00:26:41.890 --> 00:26:50.880
+Krish NAik: Now, once I have this, add and normalization now, in the next step, I have a feed-forward network. What is a feed-forward network? Simply?
+
+112
+00:26:54.830 --> 00:26:57.490
+Krish NAik: What is a feed-forward network, if I ask you?
+
+113
+00:27:12.320 --> 00:27:14.940
+Krish NAik: linear layers, okay, but,
+
+114
+00:27:15.670 --> 00:27:23.409
+Krish NAik: Always think, first of all, lineal layers. In the people, they have used dropouts also. Okay, so I will write about dropouts.
+
+115
+00:27:23.560 --> 00:27:25.549
+Krish NAik: And then again, linear layers.
+
+116
+00:27:26.060 --> 00:27:33.019
+Krish NAik: Okay, and the next thing, like, with every linear layer, what I will be taking, an activation function.
+
+117
+00:27:40.110 --> 00:27:47.889
+Krish NAik: Now, if somebody asks you, what is the mean purpose of feed-forward network, so simply what I can say.
+
+118
+00:27:48.030 --> 00:28:05.499
+Krish NAik: tell now anything that I have passed here. So, just think about, okay, multi-year attention from here, okay? Now, here, when I have this particular feed-forward network, and again, so what is the main purpose of using an activation function? To introduce?
+
+119
+00:28:11.610 --> 00:28:14.829
+Krish NAik: true into what is the mean purpose? Non-linearity.
+
+120
+00:28:15.190 --> 00:28:17.220
+Krish NAik: Because till now in the system.
+
+121
+00:28:17.440 --> 00:28:26.030
+Krish NAik: we don't have any nonlinearity. So, guys, that's why the fundamental things matter. If you know the fundamentals, quickly you can grab it.
+
+122
+00:28:27.290 --> 00:28:28.240
+Krish NAik: Okay.
+
+123
+00:28:29.010 --> 00:28:47.369
+Krish NAik: Because using this feed-forward network, so generally, like, if I'm talking with respect to any feed-forward networks, always remember the combination happens, like, there will be a linear combination, and with that linear combination… a linear combination means a linear layer for now, that, I'm talking.
+
+124
+00:28:47.370 --> 00:28:59.239
+Krish NAik: Now, after that linear, there will be a dropout layer. Okay, after that dropout layer, there will be, again, a linear. In the original transformers, they have used a dropout, but again, using a dropout is not a compulsory thing.
+
+125
+00:29:01.260 --> 00:29:04.570
+Krish NAik: Okay. So, always remember that.
+
+126
+00:29:05.020 --> 00:29:28.620
+Krish NAik: So, now this forward layer consists of, usually, three things. So, two linear layers, one dropout for now. And later on, if I try to do a forward propagation according to PyTorch, then I can pass that, okay, then self.linear, and I can pass it as X, and then I'll be adding a relu. The main purpose is introducing ReLU, because till now, easily in the system, introducing nonlinearity.
+
+127
+00:29:28.690 --> 00:29:34.279
+Krish NAik: That is very less. And in the field of deep learning, nonlinearity plays a very, very crucial role.
+
+128
+00:29:35.910 --> 00:29:55.650
+Krish NAik: Okay, so this is the main purpose. So whenever, after multi-year retention, the first thing that you do is an add a num, okay? So in the encoder layer, if I say, the first thing happens with respect to adding a normalization, and after that, you pass it. The same thing happened, you can see here also. You'll be having multiple feeds forward.
+
+129
+00:29:56.510 --> 00:30:03.340
+Krish NAik: Here, okay, so one feed forward, finally, that they have kept it, close to the output part.
+
+130
+00:30:03.690 --> 00:30:15.369
+Krish NAik: Now, whenever you see that feed-forward, the first thing that should come to your mind, in the original paper, the combination is linear dropout linear. So, two linear layers with one, but actually it can be a single linear layer also.
+
+131
+00:30:15.570 --> 00:30:21.659
+Krish NAik: But with that linear layer, just be sure you are having an activation function. That is the most important thing.
+
+132
+00:30:21.820 --> 00:30:34.200
+Krish NAik: And if I, really show you the formula, okay, for now, it's important, to relate it to a ground source also. So, let's get back here, and let me show you.
+
+133
+00:30:34.750 --> 00:30:39.959
+Krish NAik: You can see that ReLU formula with respect to that max, if you can relate it, okay?
+
+134
+00:30:40.620 --> 00:30:48.410
+Krish NAik: in this part, multi-year attention, after multi-year attention, you have pointwise gute-forward networks. Can you see this max?
+
+135
+00:30:51.170 --> 00:31:01.329
+Krish NAik: max zero comma, and within that, they have, basically, your weights and biases, that particular combination. From here, can you relate it to a redo activation function?
+
+136
+00:31:05.000 --> 00:31:17.329
+Krish NAik: According to the formula, even if you don't look into anything. Because here, directly, they are told, okay, and railway activation function in between, that has been used. So that's why I'm telling you the same thing. And then we'll be going to the theory part.
+
+137
+00:31:22.690 --> 00:31:33.040
+Krish NAik: The input dimension that comes is, like, 512 in the paper that they have taken. According to the paper, it's 512, but that dimension can't change our look.
+
+138
+00:31:34.980 --> 00:31:37.930
+Krish NAik: Alright, now let's get back to the notes,
+
+139
+00:31:43.540 --> 00:31:51.999
+Krish NAik: Now, first you have your feed-forward network. After that, again, an addition and the normalization operation that keeps on going.
+
+140
+00:31:52.110 --> 00:32:05.300
+Krish NAik: Now, again, you… can you see this component here? So, another skip connection, if I try to compare it in the ResNet form, another node that is going around. So, again, this will help you to solve the problem of…
+
+141
+00:32:06.270 --> 00:32:25.180
+Krish NAik: vanishing gradient, the VG problem. It means that you won't be having this VG problem anymore. In both the places, we are taking care of this one. And if you are repeating this block as many times, so for example, NX, if I take NX, like this particular block, if I have 6 times, 12 times, 18 times, 24 times.
+
+142
+00:32:25.660 --> 00:32:28.670
+Krish NAik: We won't be facing the problem of vanishing gradient.
+
+143
+00:32:29.730 --> 00:32:33.649
+Krish NAik: Okay? So, that's why, now, this part is pretty much simple.
+
+144
+00:32:35.840 --> 00:32:36.920
+Krish NAik: Now,
+
+145
+00:32:37.150 --> 00:32:46.890
+Krish NAik: The most important thing that you have here is the positional encoding, okay? So, first of all, let's talk with respect to the decoder perspective a little bit.
+
+146
+00:32:48.500 --> 00:32:51.450
+Krish NAik: Then I will come to that final positional positional inquiry.
+
+147
+00:32:51.990 --> 00:32:57.629
+Krish NAik: Now let's take the decoder part. In the decoder, what are the new things that you have?
+
+148
+00:33:00.500 --> 00:33:04.190
+Krish NAik: Decoder, just reclating. Get the image from the paper.
+
+149
+00:33:09.170 --> 00:33:13.089
+Krish NAik: Actually… okay, I got the image.
+
+150
+00:33:13.690 --> 00:33:15.200
+Krish NAik: shifted a moment.
+
+151
+00:33:35.450 --> 00:33:40.150
+Krish NAik: Now, this is the part with respect to your decoder.
+
+152
+00:33:42.400 --> 00:33:45.730
+Krish NAik: Now, see, what are the components?
+
+153
+00:33:48.310 --> 00:33:50.899
+Krish NAik: Which are exactly the same here.
+
+154
+00:33:52.150 --> 00:34:01.409
+Krish NAik: So, right now, in this paper, they are talking about a machine translation task. So, in the encoding, whichever language that you have picked up, and decoding, like, which will be your output language.
+
+155
+00:34:01.410 --> 00:34:13.100
+Krish NAik: Okay? So that input-output, in the input, if I take English, in the output, if I take German for now. So here, in this case, again, can you see your output embeddings?
+
+156
+00:34:13.100 --> 00:34:22.209
+Krish NAik: So this output emittance, it means that the flow of the German information, previously in the decoder side, it was the English information tokens that you had.
+
+157
+00:34:22.590 --> 00:34:32.270
+Krish NAik: Now, here also you have the positional encoding block. With your actual embedding, you will be adding a positional vector, you will try to do the add-up, and finally, you will get your positional encoding.
+
+158
+00:34:32.500 --> 00:34:45.500
+Krish NAik: Now, one is masked multi-year retention. Okay, so they have done a masking operation, and I'll be talking about this masking operation and how it is different from multi-year retention.
+
+159
+00:34:45.630 --> 00:34:50.559
+Krish NAik: Now, in simple terms, what is masking? Can I say to hide something?
+
+160
+00:35:00.920 --> 00:35:05.180
+Krish NAik: Alright, lady, Akshay is asking,
+
+161
+00:35:05.660 --> 00:35:18.140
+Krish NAik: at every point of time, could you please tell us exactly which component of the encoder is returning? Each component? So, first of all, here, the vector. Okay, alright, let me go through that.
+
+162
+00:35:18.730 --> 00:35:26.740
+Krish NAik: So, first of all, here, your vectors go. And then, simply, what is if I'm doing a multi-head retention, or what is the output of a multi-head retention?
+
+163
+00:35:29.280 --> 00:35:31.619
+Krish NAik: Contextualized vectors, yes or no?
+
+164
+00:35:33.140 --> 00:35:48.130
+Krish NAik: Because already I have told these things yesterday. Alada, actually, you were asking this. The output of a multi-attention, the idea is that you'll be having some type of contextualized vectors. Now, these contextualized vectors from multiple heads will be added up
+
+165
+00:35:48.830 --> 00:35:59.880
+Krish NAik: Okay, once this will be added up, then comes your normalization step. So, again, it remains the vector only. Now, again, those vectors go into the next step through a feed-forward network.
+
+166
+00:36:01.300 --> 00:36:11.979
+Krish NAik: Okay? Now, again, from those feed-forward network, finally, again, you perform an add and normalization operation. So, at the end of the day, those operations are vector-based operations only.
+
+167
+00:36:12.990 --> 00:36:18.099
+Krish NAik: So, the final thing that comes out of the encoder, that is also a vector.
+
+168
+00:36:18.480 --> 00:36:27.600
+Krish NAik: But we very specialized, because from multi-tension, we have 3 specific dimensions. One is your key, query, and the values.
+
+169
+00:36:27.790 --> 00:36:44.620
+Krish NAik: Okay? Now, based on those 3 queries, so right now, the final output that I'll be getting, so 3 type of vectors that I'll be having. One is your query vector, then you will be having your, keys and values. So, always remember that part. Three things.
+
+170
+00:36:45.410 --> 00:36:54.900
+Krish NAik: Now, animation… the encoder has, inputs as English. For English to Germany, correct. And the decoder will be happy with respect to the Germany.
+
+171
+00:36:55.020 --> 00:37:04.109
+Krish NAik: German language tokens. Encoder will be having the English language tokens, and the decoder will be having… because in your train set, when you will be training.
+
+172
+00:37:04.370 --> 00:37:09.350
+Krish NAik: you will be having both examples, where I will say that, okay, my name is Paul in German, that will be something.
+
+173
+00:37:09.830 --> 00:37:13.659
+Krish NAik: So, from there, it gets. So, from your training examples.
+
+174
+00:37:14.230 --> 00:37:25.860
+Krish NAik: Okay, now let's get back to the decoder stuff. In the decoder, the same thing. Now, only change that is happening is mask multi-retention. So, in simple terms, what is mask, if I say?
+
+175
+00:37:27.480 --> 00:37:28.860
+Krish NAik: Mask means
+
+176
+00:37:38.270 --> 00:37:39.960
+Krish NAik: And hide operation.
+
+177
+00:37:40.410 --> 00:37:43.150
+Krish NAik: No, no, no, mask means ignore some values.
+
+178
+00:37:43.820 --> 00:37:48.119
+Krish NAik: Mask doesn't mean selection. Mask means hiding something.
+
+179
+00:37:48.890 --> 00:38:00.919
+Krish NAik: Okay, and what you are hiding here. So, generally, any type of multi-head attention, the standard multi-head, attention, it can look into every token, okay? So, for example.
+
+180
+00:38:01.040 --> 00:38:04.799
+Krish NAik: Let's take, the standard.
+
+181
+00:38:08.430 --> 00:38:12.240
+Krish NAik: Multi-head attention. MHA for now.
+
+182
+00:38:13.950 --> 00:38:15.940
+Krish NAik: So there, if I say that, okay?
+
+183
+00:38:16.650 --> 00:38:17.810
+Krish NAik: Mine.
+
+184
+00:38:18.130 --> 00:38:19.190
+Krish NAik: cat.
+
+185
+00:38:19.310 --> 00:38:20.410
+Krish NAik: sat.
+
+186
+00:38:20.910 --> 00:38:21.920
+Krish NAik: on.
+
+187
+00:38:22.150 --> 00:38:23.210
+Krish NAik: Duh.
+
+188
+00:38:23.360 --> 00:38:24.280
+Krish NAik: float.
+
+189
+00:38:25.410 --> 00:38:39.050
+Krish NAik: So, if you are doing a multi-tension, it can look into all the vectors, okay? So, for example, if I take my base word as cat, it can look here, it can look here, it can look here, it can look here, it can look here.
+
+190
+00:38:39.410 --> 00:38:45.670
+Krish NAik: Okay? Now, when I say, with respect to mass preparation, In the masking.
+
+191
+00:38:57.050 --> 00:39:10.619
+Krish NAik: My cat. Okay, again, I'm taking the base word. Okay, now, you know that in German, I have to do the prediction. So, for sure, I cannot show it the future tokens from my examples.
+
+192
+00:39:10.790 --> 00:39:20.620
+Krish NAik: Other than that, there is no purpose, there won't be any learning. So what happens? All these, like sat, so these values are made pretty much close to zero.
+
+193
+00:39:20.870 --> 00:39:26.010
+Krish NAik: Okay, so what can I actually look into? The cat can look into only 2 till this point.
+
+194
+00:39:27.360 --> 00:39:30.580
+Krish NAik: It can look into itself, And…
+
+195
+00:39:30.790 --> 00:39:41.270
+Krish NAik: Anything which is in the backward step, but nothing in the front, because this is the actual value that you will be predicting, which will be coming out in your output requirements.
+
+196
+00:39:42.090 --> 00:39:58.729
+Krish NAik: Okay, so this is, again, this part, if you can't visualize it in your mind, it's there in the illustrator transformer. I'll be showing you with the visualization. So whatever that output that comes, again, it becomes the input for that. So it can only look into Excel.
+
+197
+00:39:59.030 --> 00:40:02.610
+Krish NAik: And, anything in the past, but not in the future.
+
+198
+00:40:02.920 --> 00:40:14.989
+Krish NAik: If it can look into the future, it becomes a standard multi-attention. It can look everywhere, but whenever you are working with a prediction task, you need some type of learning mechanism, so that's why the masking is done.
+
+199
+00:40:16.210 --> 00:40:17.140
+Krish NAik: Okay.
+
+200
+00:40:19.090 --> 00:40:34.560
+Krish NAik: Now, this particular masked multi-way retention, okay, now this, again, you have an add-in norm, and everywhere you can see the same input, whatever goes here. Okay, the same thing. It means that to solve the problem of VG and vanishing gradient that I have.
+
+201
+00:40:35.750 --> 00:40:44.200
+Krish NAik: Now, in the next step, can you see here, now this multi-head attention, it becomes the normal version, the standard MH.
+
+202
+00:40:44.740 --> 00:40:47.529
+Krish NAik: Now here, nothing that has been hidden right now.
+
+203
+00:40:47.950 --> 00:40:52.940
+Krish NAik: Now, here, it is getting the input from encoder.
+
+204
+00:40:53.110 --> 00:40:57.130
+Krish NAik: Okay, so that's why this is an encoder, so…
+
+205
+00:40:57.770 --> 00:41:02.799
+Krish NAik: An encoder, as well as it's taking the input from here also.
+
+206
+00:41:03.390 --> 00:41:14.369
+Krish NAik: So, can I say this particular multi-attention has both the information of English and German, whereas still this particular point in the system.
+
+207
+00:41:14.610 --> 00:41:19.419
+Krish NAik: you don't have any information with respect to the English language.
+
+208
+00:41:19.740 --> 00:41:23.469
+Krish NAik: Right now, I'm taking in my encoder, I'm passing English language.
+
+209
+00:41:25.640 --> 00:41:27.430
+Krish NAik: Yes or no?
+
+210
+00:41:34.110 --> 00:41:52.340
+Krish NAik: In this particular block, I don't have any information about English language. It is coming in the next step up, the standard multi-attention, so I'm not hiding anything, whatever. So here, there is no mask. Whatever the actual information that is coming from the encoders, let's take it.
+
+211
+00:41:53.190 --> 00:42:01.319
+Krish NAik: Okay? So, you can think about here I have the actual value with the masked mel, because this masked value, actually, I can do the prediction later on.
+
+212
+00:42:05.000 --> 00:42:15.089
+Krish NAik: Now, from this multi-head retention head, again, we have your add and num feed forward. Now, this is exactly an encoder block, if you really think about.
+
+213
+00:42:17.970 --> 00:42:21.550
+Krish NAik: This is an encoder block in high level.
+
+214
+00:42:23.190 --> 00:42:29.430
+Krish NAik: Because I'm not talking about the positional inputting, but if you really think about this particular block.
+
+215
+00:42:34.110 --> 00:42:37.189
+Krish NAik: This block and this block, is it the same?
+
+216
+00:42:39.350 --> 00:42:40.340
+Krish NAik: or not.
+
+217
+00:42:40.920 --> 00:42:58.930
+Krish NAik: with respect to the core components, it's pretty much the same one, so that's why remembering this architecture becomes much easier, because the layer configuration is exactly the same, only the change that comes here, where you change a standard multi-attention to a masked version of that.
+
+218
+00:42:59.350 --> 00:43:07.010
+Krish NAik: Now, finally, whatever the output that comes here, the final, like, vectors that I can say.
+
+219
+00:43:07.120 --> 00:43:13.500
+Krish NAik: Okay, so that is passed through a linear layer, and finally you add a soft max here.
+
+220
+00:43:14.160 --> 00:43:20.539
+Krish NAik: Okay? Now, in this particular slot, Max, also, like, animation in your prospect, so you will be having the logics.
+
+221
+00:43:21.540 --> 00:43:22.480
+Krish NAik: Perfect.
+
+222
+00:43:23.060 --> 00:43:32.379
+Krish NAik: Now, decoding is taking, German as initial input. No, no, no, decoder will always, take German only, no, white will take English.
+
+223
+00:43:35.170 --> 00:43:46.880
+Krish NAik: Because in your training examples, to learn position encodings for a certain language, okay, so in the decoder phase, only German thing that goes around. In the encoder, only English thing that goes around.
+
+224
+00:43:47.610 --> 00:44:06.030
+Krish NAik: Okay, later on, when I'm passing the output of the encoder to the decoder, then only I can say, in the decoder, I'm passing that information with respect to English. But initially, if I'm using only a decoder, I cannot say that. So right now, this is a machine translation task, so we are
+
+225
+00:44:06.030 --> 00:44:13.050
+Krish NAik: But if you are only working with, like, GPT-based architectures, which are decoder-only, So, there it doesn't happen.
+
+226
+00:44:13.800 --> 00:44:14.670
+Krish NAik: All right.
+
+227
+00:44:15.490 --> 00:44:32.909
+Krish NAik: You know, these are the main two configurations. So now, we'll be looking into, first of all, the Illustrator Transformers blog, because the same things with visualization, that they have kept it, and this particular concept of MHA, okay? It can look only into itself, always remember.
+
+228
+00:44:34.140 --> 00:44:34.970
+Krish NAik: Good.
+
+229
+00:44:35.290 --> 00:44:36.760
+Krish NAik: and passed.
+
+230
+00:44:38.940 --> 00:44:43.849
+Krish NAik: Nothing in future. That's why I will just write it here in red.
+
+231
+00:44:44.590 --> 00:44:47.329
+Krish NAik: Always remember, nothing in future.
+
+232
+00:44:49.390 --> 00:44:51.919
+Krish NAik: Why nothing in future? I hope you get it.
+
+233
+00:44:53.140 --> 00:44:57.780
+Krish NAik: Otherwise, how you can define a learning mechanism, if you will be showing everything.
+
+234
+00:44:59.810 --> 00:45:05.029
+Krish NAik: Then the network knows, okay, this is the word. Then there is no purpose only of doing any prediction.
+
+235
+00:45:05.140 --> 00:45:07.320
+Krish NAik: Because you knew that thing.
+
+236
+00:45:07.500 --> 00:45:18.140
+Krish NAik: So, to learn that particular mechanism, only… so, right now, I can say, majorly, it can look into itself and the previous tokens. In my case, I've broken a single token, it can mean more tokens also.
+
+237
+00:45:19.470 --> 00:45:26.230
+Krish NAik: Alright, now, let's… Get back to the Illustrated Transformers 1.
+
+238
+00:45:30.780 --> 00:45:36.150
+Krish NAik: Alright, so this is… Okay, bye.
+
+239
+00:45:36.940 --> 00:45:44.260
+Krish NAik: Now, yesterday already we have gone through this part, import, output, transformers, again, encoders, decoders, okay?
+
+240
+00:45:44.650 --> 00:45:48.110
+Krish NAik: Right now, the encoding stuff…
+
+241
+00:45:48.260 --> 00:45:50.840
+Krish NAik: Okay, because in high level, this should…
+
+242
+00:45:51.190 --> 00:46:07.429
+Krish NAik: whenever eye level you look into, yes, this is actually what is going on, only with respect to one example. But actually, when you need to do the training, so inside these decoders, examples goes ahead for that particular language.
+
+243
+00:46:09.990 --> 00:46:13.559
+Krish NAik: Now, the encoding component that I have.
+
+244
+00:46:14.280 --> 00:46:21.489
+Krish NAik: So here they are talking about a stack of 6 encoders, so according to the original research paper that they have taken.
+
+245
+00:46:21.700 --> 00:46:31.760
+Krish NAik: Okay? Now, here, the encoders are all identical in structures. Always remember inside an encoder what you have. I can say an attention block is there.
+
+246
+00:46:31.760 --> 00:46:45.370
+Krish NAik: And with that, you have the feed-forward stuff. Okay, so feed-forward neural network means combination of linear layers. It can be a single or combination of dropout with ReLU. Okay, so that combination, always keep it in mind.
+
+247
+00:46:47.510 --> 00:46:51.840
+Krish NAik: Now, whatever the output that comes from the encoder, you pass it to the decoder.
+
+248
+00:46:52.400 --> 00:47:03.090
+Krish NAik: Okay? Now, okay, now there's all these things we have already discussed, so this is first couple, we are creating the embeddings. Once you have the embeddings.
+
+249
+00:47:03.160 --> 00:47:21.439
+Krish NAik: So you pass it through your self-attention block, you get better contextualized vectors. In our case, I have taken Y. In this case, they have taken Z. You pass that through a feed-forward. Now, again, all the operations, they have not added. You have to understand that, like, according to the original paper of add a norm at every step that they have not done.
+
+250
+00:47:22.830 --> 00:47:38.739
+Krish NAik: Okay, now, in the next step, so, like, token-wise, once you have those final embeddings, you will be getting them. However, both of these tokens will be passed, and finally you will be getting the output. Similarly, for your next stack of encoders, it becomes the output and the same repetition that happens.
+
+251
+00:47:41.190 --> 00:47:42.140
+Krish NAik: Kid.
+
+252
+00:47:42.900 --> 00:47:45.019
+Krish NAik: Perfect. Now,
+
+253
+00:47:45.040 --> 00:47:53.549
+Krish NAik: This is your, introducing, or, bringing the idea of multi-aid attention. So, here they have introduced the concept of
+
+254
+00:47:53.550 --> 00:48:07.739
+Krish NAik: W, Q, WKWV. In my example, I've taken it NK matrices. So these are simple weight matrix, which I've been introduced into the system, which will actually help you to create a learning mechanism.
+
+255
+00:48:12.250 --> 00:48:24.930
+Krish NAik: Okay, so right now, the operation that they have taken, so first of all, you need to calculate the scores. Once you have the scores, then you, simply bring values into the system. So, all those operations.
+
+256
+00:48:24.930 --> 00:48:42.310
+Krish NAik: Here it's shown step-by-step. First, you do the calculation of the scores, then those scores need to be, like, normalized. Once you have those normalized, again, you need to bring keys into the system, and finally, you'll be getting your final output. Okay, so as you can see, keys here, finally, you are multiplying that with the keys.
+
+257
+00:48:42.640 --> 00:48:46.450
+Krish NAik: Okay, so for each of the words that they have taken into example.
+
+258
+00:48:46.730 --> 00:49:01.979
+Krish NAik: The same thing happens here. So, sort max with the value, because from the output of the normalization, you will be getting the values, the multiplication with your, value matrixes, which have been shown here, right?
+
+259
+00:49:03.160 --> 00:49:22.980
+Krish NAik: Alright, so this is finally how it looks like, so the metric calculation of cell potential. So, simply, like, each block that you have, which represents the vector. Finally, you are multiplying them with your query matrix, key matrix, and the value matrix. And finally, you will be having your query vector, key vector, and the value vector.
+
+260
+00:49:24.770 --> 00:49:46.330
+Krish NAik: Alright, now since we are dealing with matrices, we can condense steps, through, like, 6 in one formula to calculate the output of the cell potential here. Okay, so here they have taken our short max on top of the query matrix and your key, which you have actually done a transverse operation, KT. KT means a transverse operation on top of your key one.
+
+261
+00:49:46.330 --> 00:49:55.529
+Krish NAik: Okay, and finally multiplying with this V1. Now, this same formula, we'll be looking into this, and root over D by K. Now, D by K is a dimension, which is mentioned.
+
+262
+00:49:55.530 --> 00:50:04.190
+Krish NAik: So, from there, the final value. Now, this same thing is actually all these operations that you have done. How many of you can relate that?
+
+263
+00:50:08.010 --> 00:50:14.889
+Krish NAik: Because this is finally the formula. Step by step, we have done those things, but they have just
+
+264
+00:50:15.040 --> 00:50:18.070
+Krish NAik: Written the final content version.
+
+265
+00:50:19.330 --> 00:50:22.960
+Krish NAik: So, initially, we started with key and query.
+
+266
+00:50:23.090 --> 00:50:31.800
+Krish NAik: Later on, what we did, we introduced values, so that's why, finally. So, whatever the output, that was the normalized version, so here, basically, the sort max.
+
+267
+00:50:32.080 --> 00:50:35.580
+Krish NAik: I hope you guys can't relate the formula, don't get confused.
+
+268
+00:50:36.930 --> 00:50:46.959
+Krish NAik: Alright. Now, the beast with many heads, so this is where they are introducing multiple heads into the system. In the original paper, I think they have taken it, the number of heads are 8.
+
+269
+00:50:47.090 --> 00:50:50.559
+Krish NAik: Okay, so… I think,
+
+270
+00:50:51.340 --> 00:51:01.360
+Krish NAik: Generally, the heads are, like, 8 and 16 is the very common numbers. You can see, in this work, we employ H is equal to 8 parallel attention, okay, or heads that they are referring.
+
+271
+00:51:02.250 --> 00:51:08.689
+Krish NAik: Okay, so in the original paper, they have taken it, but this can be increased, like, 8, 16,
+
+272
+00:51:08.860 --> 00:51:12.510
+Krish NAik: Generally, the number is 2 to the power n that we do follow.
+
+273
+00:51:14.770 --> 00:51:15.680
+Krish NAik: Perfect.
+
+274
+00:51:15.990 --> 00:51:25.670
+Krish NAik: Now, for each of the attention head, we'll be finally getting this output, and finally, those output needs to be concatenated and passed through a
+
+275
+00:51:27.100 --> 00:51:31.429
+Krish NAik: linear layer. Concatinate plus linear operation, that we have done it.
+
+276
+00:51:31.850 --> 00:51:51.150
+Krish NAik: So, now if you look, so now they have written it in a much more condensed form. This is our input sentiments, we embed each word, we split it into 8 heads, we multiply X, it means that your main, embedded word. Embedded word means what? Vector, can I say?
+
+277
+00:51:51.280 --> 00:52:04.580
+Krish NAik: Okay, in simple terms, embedded word refers to a vector operation. So we multiply X with R with the weight matrices. So right now, as we have introduced weight into the system, 3 different types of weights, the key, query, and the values.
+
+278
+00:52:04.830 --> 00:52:15.079
+Krish NAik: Calculate the tension using the resultant AQ theme matrices will be calculating. Okay, now, when they are talking about the calculation, so this is where actual cells
+
+279
+00:52:15.270 --> 00:52:18.230
+Krish NAik: Attention, comes into the picture.
+
+280
+00:52:18.860 --> 00:52:30.640
+Krish NAik: Now, finally, once you have those results, you'll be performing, concatenate the result, okay, Z, which is basically the output, in our case, it was Y, and then you can actually pass it through a linear layer.
+
+281
+00:52:31.940 --> 00:52:36.620
+Krish NAik: So that's why the linear layer will also have weights, so that's why they have taken this as
+
+282
+00:52:36.740 --> 00:52:39.590
+Krish NAik: W, who represents your output.
+
+283
+00:52:39.970 --> 00:52:40.840
+Krish NAik: Okay.
+
+284
+00:52:41.100 --> 00:52:48.240
+Krish NAik: And from there, whatever that final contextualized vector that you got. Just remember this dimension and this dimension will be same.
+
+285
+00:52:49.350 --> 00:52:53.479
+Krish NAik: Okay, so can you see here? If you look into the blocks they have taken here.
+
+286
+00:52:53.660 --> 00:52:59.300
+Krish NAik: like, here, what's, like, 2,4, if I see the dimension here also, 2,4, that has been mentioned.
+
+287
+00:52:59.860 --> 00:53:00.690
+Krish NAik: Okay.
+
+288
+00:53:01.240 --> 00:53:04.750
+Krish NAik: 2 rows, 4 columns. Always remember that.
+
+289
+00:53:05.990 --> 00:53:15.360
+Krish NAik: This is the final weight output that… so whenever you have a linear layer, with that linear layer, weights will be introduced into the system.
+
+290
+00:53:16.650 --> 00:53:20.679
+Krish NAik: So that's why that WO that they updated, O stands for output here.
+
+291
+00:53:22.220 --> 00:53:34.130
+Krish NAik: So, whenever it's multiply with a weight matrix W, so weight matrix when I'm telling. So, this is the actual linear layer. Linear layer means weight introduction that you are doing into the system.
+
+292
+00:53:36.370 --> 00:53:44.530
+Krish NAik: All right. Now, majorly, this visualization yesterday, I have shown… okay. Now, little bit, let's talk about this positional inputting part.
+
+293
+00:53:45.170 --> 00:54:04.319
+Krish NAik: Now, position encoding, if you really think about, because, as I have told you, self-attention has zero idea about order, so you need to align your system so that it can really understand position or order, because every word, sequence matters to us.
+
+294
+00:54:04.840 --> 00:54:13.579
+Krish NAik: Now, one thing that's missing from the model we have described it so far is a way to account for the order of the words in the input sequence. So.
+
+295
+00:54:13.580 --> 00:54:25.399
+Krish NAik: Previously, I proved self-attention really has no influence with respect to the order, so the idea is we will bring order here. To address this, the transformers add a vector to each input embedding.
+
+296
+00:54:26.540 --> 00:54:32.529
+Krish NAik: adds a vector, the same thing that even I have told you. So, can you see here, input, J,
+
+297
+00:54:32.650 --> 00:54:40.630
+Krish NAik: Okay, now, this input, first of all, the embedding will be created, which is X, with that you are adding a positional input.
+
+298
+00:54:40.810 --> 00:54:47.830
+Krish NAik: So, this word with this particular position, and that becomes your final encoding, which is your X1.
+
+299
+00:54:49.170 --> 00:54:54.890
+Krish NAik: So, with your actual embedding, you are adding the information with respect to the input also.
+
+300
+00:54:58.680 --> 00:55:06.219
+Krish NAik: Animesh is asking, what is W, how do we get it? We add it, we don't get it. We introduce the linear layer into the system.
+
+301
+00:55:11.010 --> 00:55:26.779
+Krish NAik: Here, we are actually, like, the main operation with respect to multi-heads, if you really think about it, it is much more about the softmax operation. So the thing that you are telling, bringing them between the range of 0 to 1,
+
+302
+00:55:26.970 --> 00:55:41.260
+Krish NAik: Okay, the same thing will happen with respect to sort max also. Like, the… that's why, the main purpose of bringing 0 to 1. So, if you can think about the normal version of normalization, but actually, it's the sort max. The sort pass also does the same thing.
+
+303
+00:55:42.640 --> 00:55:49.610
+Krish NAik: Arlok is asking, MQMK are external matrices. No, those are weight matrices that we will be introducing into the system.
+
+304
+00:55:51.870 --> 00:55:55.729
+Krish NAik: And how we will introduce them? By introducing linear layers.
+
+305
+00:55:56.500 --> 00:55:58.270
+Krish NAik: I hope allocated.
+
+306
+00:56:00.380 --> 00:56:17.810
+Krish NAik: Okay, we don't create the matrix. See, guys, whenever I say matrix, matrix, you have to think about its layers at the end of the day. That's why I created that in your study, I created that linear block, no? One linear block for keys, one linear block for queries, one linear block.
+
+307
+00:56:17.920 --> 00:56:24.229
+Krish NAik: So when I say matrix, it's not like I define a matrix, blank matrix, rather than use linear liaison.
+
+308
+00:56:26.650 --> 00:56:27.620
+Krish NAik: Kalam.
+
+309
+00:56:28.030 --> 00:56:33.390
+Krish NAik: Yes. Alright. Now, as we are talking about, so even in this block, they have not
+
+310
+00:56:33.500 --> 00:56:47.869
+Krish NAik: talk, a lot of detail with respect to positional encoding, but there are a few factors. So, like, this is also widely used in research. So, there are two ways of, like,
+
+311
+00:56:48.260 --> 00:57:00.909
+Krish NAik: Defining your positional encodings. One is a learning mechanism. Okay, it means that you don't define anything. You start with something random. During the training, the network can figure it out. That is one option.
+
+312
+00:57:01.570 --> 00:57:02.230
+Krish NAik: Okay.
+
+313
+00:57:02.730 --> 00:57:09.500
+Krish NAik: The second option is some type of hard-coded algorithm, which in the Transformers paper that they have done.
+
+314
+00:57:10.620 --> 00:57:16.510
+Krish NAik: Okay, and that, particular, I think, function even I can show you.
+
+315
+00:57:16.960 --> 00:57:18.980
+Krish NAik: Where is that function?
+
+316
+00:57:20.160 --> 00:57:23.030
+Krish NAik: Yes, this is the function that they have used.
+
+317
+00:57:26.540 --> 00:57:31.779
+Krish NAik: Okay, positional encoding, so what are the parameters? Position, comma, I stands for index.
+
+318
+00:57:31.950 --> 00:57:42.239
+Krish NAik: Sign cause, okay, now, generally, like, sign and cost that, they have taken two different functions. One for your odd tokens, one for your event tokens.
+
+319
+00:57:43.850 --> 00:57:59.249
+Krish NAik: Okay, and now there are some added benefits of using periodic functions. Okay, I'll be coming to that, but for now, these are the two actual things, because here also it's not mentioned, so don't directly think about how it is. Two general ways are there.
+
+320
+00:57:59.290 --> 00:58:11.880
+Krish NAik: In some research papers, they use back, the gradient signals. Through back propagation, they update these things. That can also be done, and the second way is to use some type of hard-coded algorithm, which they have taken.
+
+321
+00:58:12.030 --> 00:58:14.729
+Krish NAik: In this, original Transformers paper.
+
+322
+00:58:15.280 --> 00:58:34.109
+Krish NAik: Now, if we assume the embedding has a dimensionality of 4, the actual positional encodings would look like this. So, they have taken input 4, a similarity of 4. The dimension needs to be matched, because the output of the final positional encodings that you'll be having, they need to maintain the dimension as per the input embeddings.
+
+323
+00:58:35.120 --> 00:58:39.459
+Krish NAik: Okay? Now, what might actually look like? Now, this graph is really interesting.
+
+324
+00:58:39.720 --> 00:58:48.220
+Krish NAik: Now, generally, the embedding dimensions we play with, we start from something like 512 is a very good number, that is widely used.
+
+325
+00:58:48.350 --> 00:58:53.709
+Krish NAik: So in this particular example, just try to look into this particular index.
+
+326
+00:58:54.740 --> 00:58:55.680
+Krish NAik: Okay.
+
+327
+00:58:56.130 --> 00:59:01.219
+Krish NAik: I will try to zoom, but I think, to a certain extent, only it is possible.
+
+328
+00:59:01.680 --> 00:59:12.579
+Krish NAik: Can you see here? A real example of positional encoding for 20 words that they have shown right now? So, in this case, with respect to the number of words they have, it's 20.
+
+329
+00:59:12.630 --> 00:59:25.209
+Krish NAik: And in this case, it's the dimension. At every dimension, how the position encoding is creating an impact. Because, when you look into, in our example, it's only 4, but in real world.
+
+330
+00:59:25.330 --> 00:59:27.370
+Krish NAik: This number is bigger and bigger.
+
+331
+00:59:27.930 --> 00:59:36.840
+Krish NAik: Okay, so as I've told you, it can be 4096. Right now, the research according to 2025 by 2026.
+
+332
+00:59:39.050 --> 00:59:56.039
+Krish NAik: Now, they're talking about, the formula for the positional encoding is described in the paper in section 3.5. I've already shown you the formula. You can see the code for generating the positional encodings and get time signal ID. Okay, so they have taken it from that Tensor to Tensor notebook.
+
+333
+00:59:56.490 --> 01:00:13.860
+Krish NAik: the same notebook that yesterday I've shown. Now, this is not the only possible method for positional inputting. As I told you, there are other methods also. It, however, gives the advantage of being able to scale to unseen length of sequences. Now, unseen length of sequences really
+
+334
+01:00:13.920 --> 01:00:25.040
+Krish NAik: Whenever you are working with any type of language models, because right now, if I say transformers, so what is a transformer? In simple terms, can I say that this is a language model, yes or no?
+
+335
+01:00:31.140 --> 01:00:46.180
+Krish NAik: is transformers a language model? Because going forward, we'll be using that term language model. Like, models can be different. It can be BERT, GPT, but everyone is a language model, and they all follow the core principle of Transformers.
+
+336
+01:00:46.300 --> 01:00:54.760
+Krish NAik: Okay, now, from the transformers, it's not necessary, they will be using both the things, encoding and decoding. They might use only one component, and they will skip the other one.
+
+337
+01:00:55.890 --> 01:01:05.780
+Krish NAik: Okay, so now to scale to unseen length of sequences. Now, most of the times in every problem statement till now, we always define our max sequence length.
+
+338
+01:01:08.800 --> 01:01:10.859
+Krish NAik: This is very, very important.
+
+339
+01:01:11.700 --> 01:01:15.010
+Krish NAik: You should know your max sequence length.
+
+340
+01:01:15.440 --> 01:01:23.880
+Krish NAik: If you don't know where it is ending, it becomes very hard for the network to really understand. It means scope, scope definition.
+
+341
+01:01:24.380 --> 01:01:40.490
+Krish NAik: If I say that, okay, from this token, if you want to access to a certain length, so it should have some type of access. I cannot say that, okay, from the first word of the first page, it can… it should go to the last word of the last page. Do you think that it is possible?
+
+342
+01:01:41.750 --> 01:01:46.479
+Krish NAik: To create that, particular sequence length.
+
+343
+01:01:47.720 --> 01:01:56.009
+Krish NAik: Because if you try to create any real relationship in real world also, if I say the first word of the book to the last
+
+344
+01:01:56.140 --> 01:01:58.459
+Krish NAik: Word of the book in the last page.
+
+345
+01:02:00.070 --> 01:02:08.390
+Krish NAik: Okay, so really, like, that's why I'm telling, you need to maintain your max sequence. It means that you should have a scope definition.
+
+346
+01:02:08.770 --> 01:02:22.409
+Krish NAik: And within that scope, you need to maintain that, which is defined by the max sequence length. It doesn't mean that at every point of time you'll be looking into. So that's why they use periodic functions to actually help you, and they have a specific range.
+
+347
+01:02:23.720 --> 01:02:27.370
+Krish NAik: So what is the range of a sine function and a cosine function?
+
+348
+01:02:29.300 --> 01:02:30.849
+Krish NAik: General ranges?
+
+349
+01:02:31.470 --> 01:02:33.810
+Krish NAik: Yes. Sine and cosine?
+
+350
+01:02:35.270 --> 01:02:37.169
+Krish NAik: Little one, little one?
+
+351
+01:02:40.520 --> 01:02:46.960
+Krish NAik: Okay, now Mantraj is telling, PE purpose is to assign position to each token so that no loss of data
+
+352
+01:02:47.310 --> 01:02:55.239
+Krish NAik: It's not about no loss of data, say, if I don't use positional energy, then also I don't feel the problem of loss of data, you have to understand.
+
+353
+01:02:55.650 --> 01:03:02.460
+Krish NAik: Rather than… whenever you are working with any language, a language has a certain syntax.
+
+354
+01:03:02.690 --> 01:03:11.460
+Krish NAik: grammatical syntax. You need to respect that. I cannot put words here and there. Then the actual grammatical meaning will change.
+
+355
+01:03:11.950 --> 01:03:14.249
+Krish NAik: Though, it might have the context.
+
+356
+01:03:14.650 --> 01:03:20.220
+Krish NAik: So if I say my name is Paul, later on I say, my name Paul, then also you can understand that, okay.
+
+357
+01:03:20.350 --> 01:03:23.239
+Krish NAik: I'm trying to say that is, though is is missing.
+
+358
+01:03:24.730 --> 01:03:30.290
+Krish NAik: Okay, so through that, we try to align that you should maintain that order.
+
+359
+01:03:30.560 --> 01:03:36.650
+Krish NAik: Because self-attention, multi-attention, these components don't respect order.
+
+360
+01:03:36.790 --> 01:03:39.679
+Krish NAik: So you need to bring order into the system.
+
+361
+01:03:40.540 --> 01:03:48.239
+Krish NAik: So that at least you will be grammatically correct for that certain language, whichever you are working with, Mantage. I hope you get that.
+
+362
+01:03:48.890 --> 01:03:57.070
+Krish NAik: Now, Alardi Akshay is asking, so this mechanism helps us to produce better context for each token. Yes, for sure, the context will be better and correct?
+
+363
+01:03:57.650 --> 01:04:08.410
+Krish NAik: It does a fee. You have to understand, context means within a certain piece of text, you might have the context, but think about if it is grammatically incorrect.
+
+364
+01:04:10.140 --> 01:04:19.330
+Krish NAik: the condition can be there. No, that's why I've taken that particular example. If you, just think about it, because a lot of people think that removing stop words
+
+365
+01:04:20.260 --> 01:04:24.409
+Krish NAik: If you try to actually remove stop words and classical NLP, good, it's good.
+
+366
+01:04:24.530 --> 01:04:28.279
+Krish NAik: But actually, you don't need to do that in deep learning and LP.
+
+367
+01:04:29.010 --> 01:04:42.299
+Krish NAik: Because if you try to remove a lot of things, for sure, the quality of the context decreases. So you should have those, because they have their meaning, probably the dominance is very, very less, but, you should have.
+
+368
+01:04:42.440 --> 01:04:49.080
+Krish NAik: Whenever you are actually building any large language model, nobody delete the stock work. But in classical NLP, it has been there.
+
+369
+01:04:49.930 --> 01:04:53.879
+Krish NAik: I hope, Aladia at that point.
+
+370
+01:04:54.800 --> 01:04:55.550
+Krish NAik: Good.
+
+371
+01:04:56.230 --> 01:05:06.120
+Krish NAik: Now, example, if our train model is asked to translate a sentence longer than any of those in our training set, okay? Now, generally, like, this unsale length
+
+372
+01:05:06.720 --> 01:05:23.160
+Krish NAik: Most of the times, it is handled to the max sequence parameter, but, again, I cannot say that. So, now, this can be handled through some type of transformation operation, where you try to break the context into two parts, and then you can pass it.
+
+373
+01:05:23.600 --> 01:05:27.709
+Krish NAik: Now, when you look into this graph, what you can understand, simply, tell me.
+
+374
+01:05:31.280 --> 01:05:33.160
+Krish NAik: When you look into this car.
+
+375
+01:05:34.270 --> 01:05:39.810
+Krish NAik: There are two things here. One is with respect to sine, one is with respect to cosine.
+
+376
+01:05:41.710 --> 01:05:46.879
+Krish NAik: Pretty much an inverse transformation with respect to the colors, if you at least try to see.
+
+377
+01:05:48.450 --> 01:05:57.750
+Krish NAik: So here it's telling that because the values of the left half are generated by one function which uses sine, and the right one is generated by the another function which uses cosine.
+
+378
+01:05:58.290 --> 01:06:04.430
+Krish NAik: So that's why a little bit, I can say, if you look into the patterns, you will feel
+
+379
+01:06:04.800 --> 01:06:16.170
+Krish NAik: Pretty much the same thing, like, you can use only one function also, but in the original paper, they have taken an approach for odd, they will be using sign, for even they will be using that, cost approach.
+
+380
+01:06:18.790 --> 01:06:37.080
+Krish NAik: All right. Now, again, another visualization that, they have taken, like, the July 2020 update, according to the positional inputting shown above is the tensor-to-tensor implementation. Okay, but, the method shown in the paper is slightly different in that it doesn't directly concatenate.
+
+381
+01:06:37.310 --> 01:06:40.560
+Krish NAik: Okay, now, directly doesn't concatenate.
+
+382
+01:06:41.590 --> 01:06:45.210
+Krish NAik: What is that? It means that the thing that you have learned here
+
+383
+01:06:45.670 --> 01:06:56.599
+Krish NAik: Can I say that this is a concatenation operation? Because in simple terms, this actually goes into the system. But in the original paper, somehow the three have changed that particular mechanism.
+
+384
+01:06:57.920 --> 01:07:10.839
+Krish NAik: Now, according to the original research, now going forward in every research paper, it's not necessarily the exact theme which has been mentioned in the paper, everybody uses that. They can do their… some minor modifications.
+
+385
+01:07:11.180 --> 01:07:24.459
+Krish NAik: It means that you use close to 80-80% of the white paper implementations on top of that 10-15% changes, according to your own, things, that you have learned. Foundationally, you can introduce them.
+
+386
+01:07:25.470 --> 01:07:26.270
+Krish NAik: Good.
+
+387
+01:07:26.440 --> 01:07:42.550
+Krish NAik: And interviewed the two signals. Okay, now when you look into this particular graph, with respect to embedding dimension and token position, they have reduced the embedding dimension right now, as you can see, 60 here only, and these are the token positions, 10 words. Previously, it was 20 words.
+
+388
+01:07:43.060 --> 01:07:49.609
+Krish NAik: Now, when you look into this particular graph, again, I can see some type of periodic things are here. Yes or no?
+
+389
+01:07:53.190 --> 01:08:10.129
+Krish NAik: as we are working with sign-on cause, you will be seeing some type of periodic changes. It means that there is a pattern in sign-on cause waves when you look into those functions. Can I say that there is a pattern simply that you can catch it, and when you look into this one, can I say that there is a pattern useful?
+
+390
+01:08:11.450 --> 01:08:23.979
+Krish NAik: Initially, it takes the time to build up the pattern, so in your initial embedding dimensions, it's harder to track, but I can say, yes, solely you can actually look into the pattern.
+
+391
+01:08:24.189 --> 01:08:29.130
+Krish NAik: And that's why periodic functions are actually used, because they should be always within a range.
+
+392
+01:08:29.600 --> 01:08:37.409
+Krish NAik: It means that, based on that range, we can do the definition that, okay, you should not look from the first word to the last one.
+
+393
+01:08:38.330 --> 01:08:40.220
+Krish NAik: So that felt very, very important.
+
+394
+01:08:40.740 --> 01:08:45.260
+Krish NAik: Because really, in that case, the position doesn't matter if you have something very, very big.
+
+395
+01:08:47.510 --> 01:08:57.249
+Krish NAik: Alright, now, then come the receipt wheels part, guys. See, I've already, talked about the receipt wheels, now the same thing that has been mentioned here.
+
+396
+01:08:57.370 --> 01:09:02.220
+Krish NAik: A residual collection, where have you learned about residual connections?
+
+397
+01:09:03.180 --> 01:09:05.290
+Krish NAik: Let me know, let me know, guys, quickly.
+
+398
+01:09:06.170 --> 01:09:10.219
+Krish NAik: Where have you learned about a residual connection? Dresslets?
+
+399
+01:09:10.319 --> 01:09:14.049
+Krish NAik: So that's why, initially, I told you about the ResNet. The idea is…
+
+400
+01:09:14.149 --> 01:09:29.380
+Krish NAik: The main problem which NSNet solved was VH, the vanishing rating, the same thing that has been added here, okay? Now, they have taken, okay, your original embedding, on top of that, you added your position, the final positional encoding are going inside the cellattention block.
+
+401
+01:09:29.380 --> 01:09:39.229
+Krish NAik: Right now, they are not writing MHA, multi-year retention. The idea is they have taken a single head, so if I are taking a single head, it becomes a self-attention. I hope everybody understand that.
+
+402
+01:09:41.200 --> 01:09:46.560
+Krish NAik: If you have a single head, if I say head is equal to 1, what is the meaning of that?
+
+403
+01:09:51.770 --> 01:09:54.229
+Krish NAik: Yes, guys, please let me know.
+
+404
+01:09:55.280 --> 01:10:01.489
+Krish NAik: When you do that, it simply means only one block means self-attention. Always remember that a page is equal to one.
+
+405
+01:10:02.420 --> 01:10:12.379
+Krish NAik: Alright, now, after… from the output of the cell potential, you have that add and normalize operation according to the paper. Now, from here, this is the residual connection that you are actually passing.
+
+406
+01:10:13.020 --> 01:10:25.780
+Krish NAik: Okay? Now, again, in the next step, from add and normalize, you add it to the next step, so this is the feed-forward. As we are taking both two tokens, they are created separate, but it is a single block that you have to understand.
+
+407
+01:10:26.230 --> 01:10:44.149
+Krish NAik: Okay, so this feed-forward, feed-forward, again, a gradient layer that is coming from here. It means the output of the first one, again, it goes back. So FX plus X, that same residual connection that we do have, which actually helps you to solve the problem of VG, the vanishing gradients.
+
+408
+01:10:44.400 --> 01:10:48.839
+Krish NAik: Now, this block, if I really say… can I say that this block
+
+409
+01:10:49.290 --> 01:10:53.459
+Krish NAik: Is again available in the decoder site.
+
+410
+01:10:59.040 --> 01:11:04.760
+Krish NAik: It shows we never, will have information loss.
+
+411
+01:11:05.270 --> 01:11:11.290
+Krish NAik: Yes, that's the idea, but always remember that there is informational.
+
+412
+01:11:12.450 --> 01:11:15.290
+Krish NAik: During your back propagation.
+
+413
+01:11:15.670 --> 01:11:25.559
+Krish NAik: Okay, if you don't have anything to lose, then just think with respect to the final, if you really think about the metrics and accuracy.
+
+414
+01:11:25.810 --> 01:11:29.770
+Krish NAik: there is always some amount of information loss. Now, it can be very, very small.
+
+415
+01:11:30.950 --> 01:11:35.530
+Krish NAik: But that amount is always one, okay? Otherwise.
+
+416
+01:11:35.720 --> 01:11:40.130
+Krish NAik: These are not completely lossless operations you have to understand.
+
+417
+01:11:41.100 --> 01:11:46.869
+Krish NAik: When you really think about, okay, anything in deep learning is not completely lossless.
+
+418
+01:11:49.720 --> 01:12:05.370
+Krish NAik: All right, now here we have passed it. Now, later on, the same thing, it has been broken with respect to this, layer normalization. Okay, and in this particular layer normalization, when you try to look into this one, X and Z, they are brought into the system.
+
+419
+01:12:05.370 --> 01:12:11.899
+Krish NAik: Okay, now if you really think about this, you can relate it to your main softmax formula, which I've been taken over.
+
+420
+01:12:15.680 --> 01:12:17.520
+Krish NAik: Alright, now…
+
+421
+01:12:17.730 --> 01:12:33.030
+Krish NAik: the next one… and can you see here, see, always when I say vectors and vectors, for example, when I think Aladdi asked, at every point in time, the output is always a vector. The idea is you will be creating much more contextualized vectors. Step one.
+
+422
+01:12:33.100 --> 01:12:45.860
+Krish NAik: More context, in the next step, more context, more context, more context. In that way, keep on adding more context to the vectors. So at every point of time, the return type of each component is actually a vector.
+
+423
+01:12:47.450 --> 01:13:00.510
+Krish NAik: Alright, so, same thing, okay. Now, this goes for the subliers. Now, the same thing if you try to replicate it 10 times, 20 times, okay? Now, that's why they have added it with respect to two different knobs.
+
+424
+01:13:00.860 --> 01:13:17.370
+Krish NAik: Okay, so the encoder block that, encoder 1 block, again, the same thing that happens. Now, really think about, again, the output of this as a vector. Again, that vector goes into another self-attention block. Okay, and the same thing repeats. So, again, the final thing that comes, again, that is also a vector.
+
+425
+01:13:17.700 --> 01:13:21.399
+Krish NAik: Now, that vector gets feed into your decoder.
+
+426
+01:13:21.730 --> 01:13:31.459
+Krish NAik: Now, here, if you really think about them, not talked anything with respect to tracking masking mechanism, but, below that will be coming right now.
+
+427
+01:13:32.290 --> 01:13:45.320
+Krish NAik: Let's now focus only on the decoder side, okay? Now, decoder side, we'll be talking a little bit with respect to timestamp. It is important because what by word did actually get feed into the system.
+
+428
+01:13:45.750 --> 01:13:55.670
+Krish NAik: So, first of all, it's telling that now that we have covered most of the concepts on the encoder side, we basically know how the components of the decoders works as well.
+
+429
+01:13:56.030 --> 01:13:59.509
+Krish NAik: So, let's take a look at how they work together.
+
+430
+01:14:00.290 --> 01:14:15.729
+Krish NAik: The encoders start by processing the input sequence. The output of the top encoder is then transferred into a set of attention vectors K and V. Now, generally see, the output of the encoders that they are calling it as K and V.
+
+431
+01:14:16.670 --> 01:14:20.930
+Krish NAik: This is the actual output which gets feed into the decoder.
+
+432
+01:14:21.640 --> 01:14:28.370
+Krish NAik: Okay, so K, index, and V, index.NDECT stands for encoder, okay? Now, these are…
+
+433
+01:14:28.480 --> 01:14:33.670
+Krish NAik: Like, passed. Two, like, the first set of decoder, then the second set of decoder.
+
+434
+01:14:34.520 --> 01:14:35.360
+Krish NAik: All right.
+
+435
+01:14:35.820 --> 01:14:44.260
+Krish NAik: Now, whatever the input… now, these things you already know, only the same thing that is happening, only the notation that they have taken is KV.
+
+436
+01:14:44.410 --> 01:14:45.340
+Krish NAik: Two things.
+
+437
+01:14:46.230 --> 01:14:52.929
+Krish NAik: Now, in the next step… now, this part is important. Everybody, please focus on this particular image. This is very, very important.
+
+438
+01:14:53.480 --> 01:15:09.409
+Krish NAik: Now, it's telling that, after finishing the encoding phase, we begin the decoding phase. Each step in the decoding phase outputs an element from the output sequence, the English translation task in this particular case. Here, the output is in English. Okay, and the input is in German.
+
+439
+01:15:10.160 --> 01:15:21.039
+Krish NAik: The following steps repeat the process until a special symbol is reached, indicating the transformer decoder has completed its output. And what is that?
+
+440
+01:15:21.640 --> 01:15:23.770
+Krish NAik: unique, special symbol.
+
+441
+01:15:26.370 --> 01:15:27.970
+Krish NAik: E-O-S…
+
+442
+01:15:28.950 --> 01:15:38.049
+Krish NAik: symbols, when they say it's not actually a symbol, those are referred to as two functions, okay? Like an SOS, start of a sequence, EOS, end of a sequence.
+
+443
+01:15:38.700 --> 01:15:53.950
+Krish NAik: Okay, in every model that you have. I generally, we give numbers to them, a specific number to a specific type of token. I think, okay, alright, after this, I'll be showing you an example of bird tokenization, which will actually help you to understand this.
+
+444
+01:15:54.250 --> 01:15:58.259
+Krish NAik: When I say tokens, it's very specific numbers that are being attached.
+
+445
+01:15:58.520 --> 01:16:17.079
+Krish NAik: Okay, now everybody, as I think it has reached step 3, 4, 5, 6. So here, the following steps repeat with a special symbol indicating the transformer decoder has completed its output. The output of each step is fed to the bottom of the decoder. Now, see, from here, whatever that output that comes.
+
+446
+01:16:22.340 --> 01:16:29.580
+Krish NAik: Okay, so step by step, just look. First, it went, whatever it went. First, it predicted I, if I'm taking.
+
+447
+01:16:31.040 --> 01:16:36.579
+Krish NAik: Now… based on your previous output, whatever that I gave in the next step.
+
+448
+01:16:36.770 --> 01:16:53.050
+Krish NAik: I, then it AM came output, then again AM. So I'm actually not looking into that future part. You have to understand, because this is actually the masking operation that you are doing. See, AM to AM. You are actually not looking into the future.
+
+449
+01:16:54.130 --> 01:17:04.110
+Krish NAik: Again, it is doing the prediction. Then that prediction is used. So that's why I told… it can look into itself or anything in the past, but nothing in the future.
+
+450
+01:17:05.070 --> 01:17:10.190
+Krish NAik: From this visualization, try to understand that particular masking operation that I have told you.
+
+451
+01:17:10.900 --> 01:17:12.650
+Krish NAik: Because this is the best way.
+
+452
+01:17:13.710 --> 01:17:22.259
+Krish NAik: And, whenever, like, many people ask, like, in the decoder, you pass German sentences? Yes, this is actually… I'm passing the German sentences.
+
+453
+01:17:22.290 --> 01:17:34.190
+Krish NAik: I hope you get that, because the output of the decoder actually becomes the input. So that's why I say that particular thing. You are actually passing the, Frank sentences.
+
+454
+01:17:34.650 --> 01:17:40.280
+Krish NAik: So, initially, it's not about a complete sequence. You have to think about,
+
+455
+01:17:40.410 --> 01:17:54.400
+Krish NAik: like, initially, the mask is there. So, slowly, with respect to type, it will develop to a full sentence. So first, it is not a full sentence, it is a sequence of tokens. Finally, you will be having that particular sequence.
+
+456
+01:17:57.690 --> 01:18:02.740
+Krish NAik: Now, Aluk is asking masked attention, but the architecture shows two inputs, two decoders.
+
+457
+01:18:03.120 --> 01:18:04.430
+Krish NAik: two inputs.
+
+458
+01:18:06.340 --> 01:18:08.540
+Krish NAik: Two inputs, which two inputs?
+
+459
+01:18:11.250 --> 01:18:12.400
+Krish NAik: Draw Rooted.
+
+460
+01:18:14.300 --> 01:18:18.929
+Krish NAik: One from encoder, okay, now this is the K index that you have.
+
+461
+01:18:20.230 --> 01:18:24.260
+Krish NAik: Now, see, right now they are talking about a single training example.
+
+462
+01:18:24.370 --> 01:18:32.250
+Krish NAik: When you have main training examples, then actually you'll be passing those German sentences also. That's the thing I'm repeating.
+
+463
+01:18:32.770 --> 01:18:42.480
+Krish NAik: So, where this is a single sentence example. So, from here, I don't have any training examples, but this actually happens. But in real time, what will happen?
+
+464
+01:18:43.850 --> 01:18:48.519
+Krish NAik: through the decoders, you can pass a series of, like, German-based sentences also.
+
+465
+01:18:49.090 --> 01:19:02.310
+Krish NAik: If there is any architectures which are based on decoders like GPT, the same thing that happens. You can directly pass entirely. If it's in the input, there is no restriction that you cannot pass this. You can pass anything.
+
+466
+01:19:02.920 --> 01:19:12.549
+Krish NAik: Yeah, any type of GPT-based architectures, GPT-1, Nano-GPT, TinyGPT, all those. Initial for learning purpose, you can see that directly you can pass any type of thing.
+
+467
+01:19:12.880 --> 01:19:25.049
+Krish NAik: What you have to understand during the prediction, because this is a single sample prediction that they have shown, which helps you, because that concept of masking is important.
+
+468
+01:19:25.720 --> 01:19:39.500
+Krish NAik: Because in masking, we say that very specifically. You can look into your previous, past interactions, okay? But you can look into itself or the past interactions, but you cannot look something into the future.
+
+469
+01:19:44.520 --> 01:19:47.700
+Krish NAik: Okay, German as feature, and English as target.
+
+470
+01:19:49.140 --> 01:19:52.569
+Krish NAik: Alright, now if you really look into this one…
+
+471
+01:20:01.970 --> 01:20:04.749
+Krish NAik: So here, here is the input.
+
+472
+01:20:04.900 --> 01:20:22.709
+Krish NAik: From here, you'll be, passing whatever is your output language. So, here I have two things. Input is English, the output is German for now, if I'm taking. Can you see here very specifically shifted right that they have particularly mentioned here? So, that represents through that mask.
+
+473
+01:20:23.470 --> 01:20:28.979
+Krish NAik: White is taking input English and output also as English.
+
+474
+01:20:31.080 --> 01:20:32.005
+Krish NAik: No…
+
+475
+01:20:33.150 --> 01:20:41.930
+Krish NAik: Pankaj is asking why it is taking input English? No, no, no. In the Illustrator transformer, this is the input. The input is German, the output is English.
+
+476
+01:20:43.020 --> 01:20:44.549
+Krish NAik: I hope you get that.
+
+477
+01:20:47.150 --> 01:20:48.220
+Krish NAik: Pankaj.
+
+478
+01:20:48.670 --> 01:20:49.600
+Krish NAik: Okay.
+
+479
+01:20:51.170 --> 01:20:58.549
+Krish NAik: Alright, now, coming to Aloog. Aloog is telling, yes, this I mentioned as, two inputs of the decoder. Alright.
+
+480
+01:20:58.740 --> 01:21:13.520
+Krish NAik: Okay, according to the original… so if you really think about, one is here, okay, now this. Now, this output embedding. Now, this output embedding, it means that for your output factor token, in simple terms of pricing.
+
+481
+01:21:16.190 --> 01:21:21.979
+Krish NAik: Now, during your training, you'll be feeding all of your German examples through your decoder directly.
+
+482
+01:21:22.500 --> 01:21:32.029
+Krish NAik: That I am seeing. If you think from a single sample prospect, then you can think about in this respect. But in real time, when you actually train it, it is not required.
+
+483
+01:21:35.350 --> 01:21:41.340
+Krish NAik: And because, see, it is dependent on that task, really, this input and output.
+
+484
+01:21:41.600 --> 01:21:46.409
+Krish NAik: Right now, this is a machine translation task. If you change the task to something else.
+
+485
+01:21:47.130 --> 01:21:53.590
+Krish NAik: then it is not required. It means that if I try to break encoder-specific task and decoder-specific task.
+
+486
+01:21:54.350 --> 01:22:11.760
+Krish NAik: Now, masking is a really good, so, like, masked language model. Generally we use the term, like, MLM, masked language model. In those type of conditions, we actually bring into the system a masking. It means that, that hiding part. Some tokens we hide.
+
+487
+01:22:12.520 --> 01:22:18.809
+Krish NAik: So, in which case, it is good. For example, if you're trying to do some type of fill-in-the-blank type of problem statement.
+
+488
+01:22:22.350 --> 01:22:34.999
+Krish NAik: Okay, so that is, really good. Okay, so based on problem statements, you can change. But in this original paper, your main examples will be provided in both the cases, through encoders, through decoders.
+
+489
+01:22:35.710 --> 01:22:48.260
+Krish NAik: Okay, and actually, if you are trying to do this, on top of that, if you are adding positional encodings, again, they are not added, you can learn the sequence of a certain output language also.
+
+490
+01:22:48.650 --> 01:22:57.429
+Krish NAik: This is very, very important, because these positional recordings are very specific to that particular language, which the decoder will throw out.
+
+491
+01:23:01.400 --> 01:23:05.019
+Krish NAik: There is no mapping concept in Ranjan. That is how weights work.
+
+492
+01:23:05.860 --> 01:23:07.519
+Krish NAik: Nobody does any mapping.
+
+493
+01:23:08.260 --> 01:23:11.150
+Krish NAik: Mapping means a direct relation that can be defined.
+
+494
+01:23:11.250 --> 01:23:13.610
+Krish NAik: Here, it's about weights and boxes.
+
+495
+01:23:13.910 --> 01:23:17.790
+Krish NAik: Through a direct mapping definition, we cannot define it in England, no.
+
+496
+01:23:20.040 --> 01:23:24.240
+Krish NAik: Because through those weights and biases, only the mean learning operation data.
+
+497
+01:23:29.170 --> 01:23:47.229
+Krish NAik: Alright, now, let's, look into this part. So, that's why the first thing that, please try to understand that mask multi-retention. Because of this masking, I'm not looking anything into the future. Whatever is coming from the output, only that output, I'm reusing it.
+
+498
+01:23:48.270 --> 01:23:55.100
+Krish NAik: And once in the input you get an EOS, it means that the decoder needs to stop.
+
+499
+01:23:55.340 --> 01:23:59.040
+Krish NAik: Okay, it does not look into any future tokens.
+
+500
+01:24:01.870 --> 01:24:13.800
+Krish NAik: Alright. Now, whenever you pass, actually, anything, by default, these tokens are attached. Whenever you are working with Hugging Face, it means that you don't add it by yourself. By default, the model takes care.
+
+501
+01:24:14.210 --> 01:24:19.249
+Krish NAik: Okay, now, just focus on these four lines that I'm going to discuss right.
+
+502
+01:24:20.570 --> 01:24:25.809
+Krish NAik: The attention layers in the decoder operate in a slightly different way.
+
+503
+01:24:26.100 --> 01:24:28.350
+Krish NAik: than the one in the encoder.
+
+504
+01:24:29.050 --> 01:24:48.459
+Krish NAik: Okay? Because I'm changing that mask operation, so because of that, they are talking. So here it's saying that in the decoder, the self-attention layer is only allowed to attend to earlier positions in the output sequence itself and the earlier, actually. They have not used the term itself. It can look into itself also.
+
+505
+01:24:48.810 --> 01:25:00.270
+Krish NAik: So, in the decoder, the cell potential layer is only allowed to attend to earlier positions in the output sequence. Now, this is done by masking future positions, by setting them to minus
+
+506
+01:25:00.460 --> 01:25:03.120
+Krish NAik: INF. So what is INF?
+
+507
+01:25:07.100 --> 01:25:08.330
+Krish NAik: INF.
+
+508
+01:25:08.530 --> 01:25:09.630
+Krish NAik: Generally.
+
+509
+01:25:10.180 --> 01:25:12.840
+Krish NAik: minus infinity, if I say.
+
+510
+01:25:13.580 --> 01:25:16.379
+Krish NAik: Okay, on top of that, if I apply salt mats.
+
+511
+01:25:16.640 --> 01:25:19.270
+Krish NAik: what will be the value? Can I say zero?
+
+512
+01:25:20.060 --> 01:25:21.820
+Krish NAik: Yes or no? Just take.
+
+513
+01:25:22.700 --> 01:25:36.819
+Krish NAik: infinity on top of that, very specifically, if I pass it through a sort max, I can say that. So, sort max for minus INS. So, that is actually 0. So, we set the position zero, that is the same thing that I written in my notes also.
+
+514
+01:25:37.260 --> 01:25:47.360
+Krish NAik: Okay, so basking the position before the short max step, it means that to sort max, you are passing that minus infinity one. So automatically, all those values will become 0.
+
+515
+01:25:47.700 --> 01:25:53.709
+Krish NAik: Now, this is what that… right now, they are talking about the cell potentials, so mask…
+
+516
+01:25:53.880 --> 01:25:59.900
+Krish NAik: Cell potential, you can think about. But according to the original paper, you have masked what?
+
+517
+01:26:00.730 --> 01:26:02.120
+Krish NAik: multi-editation.
+
+518
+01:26:03.890 --> 01:26:21.969
+Krish NAik: Now, the encoder-decoder, attention layer, works just like multi-year attention, okay, now the same thing that they are referring here, except it creates those… once you bring, your, like, multi-year attention into the system, you have more query matrix.
+
+519
+01:26:22.010 --> 01:26:28.809
+Krish NAik: Okay, so now from the layer below, it takes the keys and the values, and from the output of the encoder stack.
+
+520
+01:26:29.010 --> 01:26:30.670
+Krish NAik: Now, two things here.
+
+521
+01:26:31.610 --> 01:26:38.100
+Krish NAik: First of all, if you really look into… so, in K and V, can you see anywhere the query is getting used?
+
+522
+01:26:38.760 --> 01:26:45.760
+Krish NAik: Your query metrics, because… the output of an encoder, there you'll be having your query metrics.
+
+523
+01:26:46.550 --> 01:26:51.599
+Krish NAik: But the query matrix is not getting used, so that is why they have mentioned this, like.
+
+524
+01:26:51.760 --> 01:26:58.480
+Krish NAik: The encoder-decoder attention layers work just like in multi-year retention, except it creates its query matrix.
+
+525
+01:27:00.180 --> 01:27:07.480
+Krish NAik: Okay, so that's why, because this information, you don't pass it to the decoder, the decoder will create it by itself.
+
+526
+01:27:10.970 --> 01:27:20.769
+Krish NAik: At this point, we will have both language metrics. Don't think language metrics. That is not a good way. Think about language vectors.
+
+527
+01:27:20.890 --> 01:27:27.630
+Krish NAik: Much more. Rather than it's a bad thing to think about from language matrix or vector matrix.
+
+528
+01:27:29.230 --> 01:27:35.310
+Krish NAik: Okay, always say in terms of vectors, that is much better definition.
+
+529
+01:27:35.950 --> 01:27:41.060
+Krish NAik: Okay? So now, how many of you could understand this minus INF part?
+
+530
+01:27:41.240 --> 01:27:43.680
+Krish NAik: what they are trying to do. Let me know.
+
+531
+01:27:43.920 --> 01:27:50.540
+Krish NAik: Because some of you might understand, some of you might not understand. Because this mass multi-attention part
+
+532
+01:27:50.900 --> 01:28:00.270
+Krish NAik: even, like, in… for me also, it took, like, a little bit of more research to explain what is going on. That's why. Otherwise, again, I can write it.
+
+533
+01:28:02.380 --> 01:28:08.309
+Krish NAik: Everybody, how many of you got it? Please let me know, and then otherwise, I will rewrite it in the notes.
+
+534
+01:28:10.400 --> 01:28:21.580
+Krish NAik: Because if you pass something in the sort max, what is the mean? So, we know that it will be between 0 to 1. If you pass something minus infinity, it becomes 0.
+
+535
+01:28:21.750 --> 01:28:25.200
+Krish NAik: That's why we set it manually, that minus INF part.
+
+536
+01:28:25.810 --> 01:28:35.009
+Krish NAik: So that's why they are telling, they add the masking all the future positions, so whatever future thing that you want to protect, everything is kept to a zero.
+
+537
+01:28:39.740 --> 01:28:41.819
+Krish NAik: And let me know, guys, quickly.
+
+538
+01:28:43.650 --> 01:28:48.710
+Krish NAik: Don't look at values outside, previous and the current predictions, correct?
+
+539
+01:28:49.050 --> 01:28:54.129
+Krish NAik: You can look into only itself or the previous things, you cannot look anything into the future.
+
+540
+01:29:07.280 --> 01:29:12.669
+Krish NAik: Alright, fine, usually it looks like, most of you get it.
+
+541
+01:29:13.020 --> 01:29:23.600
+Krish NAik: It's, good. Because right now, if I try to create a matrix, okay, simply I will try to create a matrix just to show you how this masked matrix will look like.
+
+542
+01:29:24.430 --> 01:29:26.750
+Krish NAik: Just wait, let me get back to the notes.
+
+543
+01:29:27.220 --> 01:29:28.720
+Krish NAik: Miles metric.
+
+544
+01:29:28.930 --> 01:29:38.690
+Krish NAik: Because little bit, that particular perspective you get it from your interviews is really good. It's not mentioned anywhere, you have to do a little bit more research.
+
+545
+01:29:39.570 --> 01:29:45.630
+Krish NAik: I think, lukia, I have shared the screen already.
+
+546
+01:29:45.870 --> 01:29:47.469
+Krish NAik: Yeah, can you share them.
+
+547
+01:29:48.780 --> 01:29:55.640
+Krish NAik: All right. So, first of all, let's take a simple matrix for now, and the same thing that I have repeated. Okay, I will say.
+
+548
+01:29:56.450 --> 01:29:57.490
+Krish NAik: No.
+
+549
+01:30:16.450 --> 01:30:22.850
+Krish NAik: Alright? So generally, if I'm, telling that without the mask, how your attention formula looks like.
+
+550
+01:30:23.660 --> 01:30:32.109
+Krish NAik: According to the original blog, from the blog all directly, let's take it. Attention, and then you have your three things, the three vectors.
+
+551
+01:30:32.370 --> 01:30:38.470
+Krish NAik: Q, K, V. Okay, and from here, what is the output that you'll be getting?
+
+552
+01:30:39.300 --> 01:30:41.999
+Krish NAik: directly, can I say? This one?
+
+553
+01:30:42.720 --> 01:30:50.100
+Krish NAik: your sort max. First of all, sort max with respect to Q, then,
+
+554
+01:30:50.150 --> 01:31:07.520
+Krish NAik: Keys I bring, okay, yes, keys, transpose of key that I take into the system, that we multiply with the values, okay? Now, I'm not taking that division part. Actually, there is a division part, root over T byt, okay? That's…
+
+555
+01:31:13.480 --> 01:31:17.040
+Krish NAik: Okay? Your main attention mechanism for Outlook.
+
+556
+01:31:18.460 --> 01:31:21.089
+Krish NAik: Now, slightly, this formula I'll be changing.
+
+557
+01:31:22.810 --> 01:31:26.180
+Krish NAik: Okay, so slightly, now I will bring MAM.
+
+558
+01:31:27.480 --> 01:31:28.770
+Krish NAik: Into the system.
+
+559
+01:31:30.160 --> 01:31:35.339
+Krish NAik: masked attention mechanism, okay? So in this masked attention, the same thing
+
+560
+01:31:42.990 --> 01:31:54.850
+Krish NAik: So, the same parameters that lies. Okay, now, after the short max, I will add one unique parameter as M for now, that I'll be defining as an attention mask matrix.
+
+561
+01:31:54.970 --> 01:31:58.139
+Krish NAik: Okay, so first of all, let's take soft packs.
+
+562
+01:32:00.280 --> 01:32:12.640
+Krish NAik: Okay? So, right now, previously, a single bracket did the job, but as I will introduce that particular term. So, I will take two brackets right now. The first bracket, the same thing.
+
+563
+01:32:13.260 --> 01:32:19.759
+Krish NAik: with your transpose of this one, matrix, root over your D by T, okay?
+
+564
+01:32:20.020 --> 01:32:23.790
+Krish NAik: Every time, writing this D by T again, not required.
+
+565
+01:32:23.910 --> 01:32:31.430
+Krish NAik: Okay? This is the first part, according to the older formula. On top of that, I will add this mask matrix.
+
+566
+01:32:32.720 --> 01:32:49.419
+Krish NAik: Okay? And rest of the formula, again, the rest, same. That lies. So, according to the formula, if I'm speaking, this is how things looks like. Now, let's look into, with a simple, casual mask, exactly how it looks. Now, these type of mask operations are called as casual masks.
+
+567
+01:32:50.750 --> 01:32:54.400
+Krish NAik: So, let's take something from here, mask part.
+
+568
+01:33:00.690 --> 01:33:09.290
+Krish NAik: So, first of all, tell me how many of you understood these two things that I have put. Okay, and let me write here M. M is your mask matrix.
+
+569
+01:33:10.400 --> 01:33:19.809
+Krish NAik: Because this is not written directly in the paper and in other places, but you have to understand, this is another matrix that we are introducing into the system.
+
+570
+01:33:20.020 --> 01:33:23.940
+Krish NAik: Okay, so right now, we are talking with respect to casual masks.
+
+571
+01:33:24.300 --> 01:33:26.310
+Krish NAik: There are different types of masks.
+
+572
+01:33:26.680 --> 01:33:30.869
+Krish NAik: In the main paper, they refer to casual masking much more.
+
+573
+01:33:31.160 --> 01:33:35.250
+Krish NAik: So how, for example, if I take a, 4V,
+
+574
+01:33:35.610 --> 01:33:39.150
+Krish NAik: Okay, so let's start with the mask operation here.
+
+575
+01:33:39.440 --> 01:33:44.429
+Krish NAik: And let's take a 4x4 matrix for now. 4x4 matrix…
+
+576
+01:33:45.800 --> 01:33:55.600
+Krish NAik: Now, in this 4x4 matrix, let's take a simple, like, last time, I think I have taken that cat sat, okay? So, based on that particular example.
+
+577
+01:33:56.700 --> 01:33:58.619
+Krish NAik: Okay, the first one.
+
+578
+01:34:12.160 --> 01:34:12.970
+Krish NAik: Alright.
+
+579
+01:34:14.270 --> 01:34:24.150
+Krish NAik: So, first of all, if I say that, only it can look into itself, okay? So, initially, when I'm telling, so I have to take something. So, let's start with a zero.
+
+580
+01:34:24.380 --> 01:34:31.790
+Krish NAik: When I start with a zero, I will say that minus INF, minus INF, minus INF.
+
+581
+01:34:33.880 --> 01:34:37.470
+Krish NAik: Okay? Then I do the prediction, I update this value.
+
+582
+01:34:39.010 --> 01:34:42.570
+Krish NAik: Then again, INF with minus INF.
+
+583
+01:34:43.210 --> 01:35:02.290
+Krish NAik: Then, again, from here, again, I will update the value. Value updates, I'm writing it as 0. Okay? So, right now, this 0 is token 0. Token 0 sees only itself. Then I'm talking about token 0 and this. So right now, these are pretty much the indexes. If I write here, I will just write here token 1.
+
+584
+01:35:02.910 --> 01:35:15.029
+Krish NAik: 0th index. Then, you have your token 1 and 2, your second index. Okay, so don't think we are adding 0, okay? Adding zero part is done by this operation.
+
+585
+01:35:16.860 --> 01:35:23.640
+Krish NAik: Okay? And in this part, finally, like, you'll be having a minus INF.
+
+586
+01:35:24.750 --> 01:35:25.630
+Krish NAik: Yes.
+
+587
+01:35:28.600 --> 01:35:34.169
+Krish NAik: And finally, in the last step, there is nothing to mask it, means that you can see every toolkit.
+
+588
+01:35:35.680 --> 01:35:41.480
+Krish NAik: Okay? Now, this particular condition, on top of that, if you apply a simple swap max.
+
+589
+01:35:47.680 --> 01:35:50.869
+Krish NAik: That they have referred here. What is this value?
+
+590
+01:35:51.360 --> 01:36:02.009
+Krish NAik: Okay, now this value, if I say, okay, like, equal to zero will be a bad practice to write it mathematically, so let's change this a little bit.
+
+591
+01:36:04.690 --> 01:36:10.929
+Krish NAik: this will be pretty much squished to a zero, like, zero point. After that, a lot of floating values will be there.
+
+592
+01:36:12.720 --> 01:36:17.269
+Krish NAik: Okay, so effectively, we are saying that there are zeros for our future positions.
+
+593
+01:36:19.040 --> 01:36:23.370
+Krish NAik: And here, what is the added benefit? We are not doing any type of hard coding.
+
+594
+01:36:23.550 --> 01:36:30.600
+Krish NAik: That is the other added benefit. Because sometimes, like, in some research paper, they have tested with hard-coated masks.
+
+595
+01:36:31.100 --> 01:36:37.930
+Krish NAik: Okay, now, it introduces instability into the system. So again, that is also a bad practice.
+
+596
+01:36:43.570 --> 01:36:50.929
+Krish NAik: I hope everybody understood now, from that matrix point, how this is… we are introducing.
+
+597
+01:36:52.090 --> 01:36:53.270
+Krish NAik: Everyone.
+
+598
+01:36:54.130 --> 01:36:59.860
+Krish NAik: Pankaj, wait, dinner break, dinner break. Because once you have done majorly, we are done, then directly class done.
+
+599
+01:37:00.040 --> 01:37:01.510
+Krish NAik: Okay, so don't panic.
+
+600
+01:37:01.780 --> 01:37:06.370
+Krish NAik: So, for the future tokens, which are set, it is minus IN. Yes, correct.
+
+601
+01:37:08.230 --> 01:37:11.610
+Krish NAik: Because if you have your raw scores, then there is no issue.
+
+602
+01:37:13.620 --> 01:37:21.389
+Krish NAik: Because that, raw score information, actually, like, you can get that particular information from Decoder also.
+
+603
+01:37:22.070 --> 01:37:32.419
+Krish NAik: So, exactly the raw scores values that you'll be getting. So, that information comes from the decoder. Later on, through back propagation also, it can be learned.
+
+604
+01:37:33.200 --> 01:37:39.830
+Krish NAik: So that's why I was sharing this particular idea. But this is a good one, like, everywhere it is used.
+
+605
+01:37:44.310 --> 01:38:01.909
+Krish NAik: Okay, so that's why that minus INF, so think always from that, perspective of adding that M as a matrix, and in that matrix, you have this minus infinity. So they don't use the term infinity, they… rather than INF, they use it.
+
+606
+01:38:04.640 --> 01:38:19.209
+Krish NAik: So now, the final layer and the soft mats. Okay, so the decoder stacks of vector of looks. So, vector of float, this is how vector looks like. How do we turn that into anode? That's the job of the final linear layer.
+
+607
+01:38:19.390 --> 01:38:37.080
+Krish NAik: Okay, which is allowed by the sort max. The leading layer is a fully connected neural network that projects a vector produced by the stack of decoders into much and much larger vector called the logic vector. Though the final output from the sort max, it is always referred to as the logic spot.
+
+608
+01:38:37.680 --> 01:38:47.840
+Krish NAik: Let's assume that our model knows 10,000 unique words. Now, this is the vocabulary, right now. From that unique vocabulary, we'll be picking up, okay.
+
+609
+01:38:48.230 --> 01:38:51.809
+Krish NAik: So, 10,000 unique words, can I say that this is my vocabulary?
+
+610
+01:38:52.810 --> 01:38:56.810
+Krish NAik: Because every language has its own vocabulary sites.
+
+611
+01:38:58.170 --> 01:39:01.959
+Krish NAik: Now, it can be different to different from certain data sets when you are using.
+
+612
+01:39:03.320 --> 01:39:15.360
+Krish NAik: So, our modest output vocabulary that is learned from its training data set, this would make the largest vector. So, in our example, 10,000, so they are taken 10,000 cells wide. Now, 10,000 cells wide.
+
+613
+01:39:15.750 --> 01:39:23.669
+Krish NAik: On that, can you think about such a big output that comes from your final assortments?
+
+614
+01:39:24.590 --> 01:39:40.329
+Krish NAik: Each corresponding to the score of an unique word. That is how we interpret the output of the model, followed by the linear layer. So really, like, this is really a big one. And finally, the sort max layout that turns these scores into probabilities, all positive, all add up to 1.
+
+615
+01:39:41.410 --> 01:39:53.010
+Krish NAik: The cell with the highest probability is chosen, and this is how it works with respect to softmax, and the word associated with it is produced at the final one. Now, this is, like, 012.
+
+616
+01:39:53.160 --> 01:40:01.800
+Krish NAik: So, linear layer, from there, you've got your main logits, according to the vocabulary size. Now, through a short max, you convert it into the range of 0 to 1.
+
+617
+01:40:02.010 --> 01:40:07.360
+Krish NAik: Now, you have to understand the range of logic field that is not between 0 to 1.
+
+618
+01:40:07.510 --> 01:40:10.830
+Krish NAik: through SortMax, you achieve that part.
+
+619
+01:40:11.590 --> 01:40:17.470
+Krish NAik: Which becomes your final logarithmic probabilities, which is referred to as log underscore prob.
+
+620
+01:40:17.790 --> 01:40:25.640
+Krish NAik: Okay, so the output of this final linear layer is not in the range of 0 to 1.
+
+621
+01:40:26.060 --> 01:40:36.629
+Krish NAik: you do the conversion through a softmax, because even I think, as you asked about logic spot, so I'm again repeating that step.
+
+622
+01:40:37.170 --> 01:40:43.229
+Krish NAik: And finally, we are pretty much done with this. Now, this is a recap of trading that they have simply taken.
+
+623
+01:40:43.370 --> 01:40:51.310
+Krish NAik: First of all, word with respect to index, and finally, your word vectors looks like. What are the different type of loss functions which are used here?
+
+624
+01:40:52.220 --> 01:41:09.710
+Krish NAik: Now, generally, like, cross entropy, which is commonly used, then you have cullback, lever divisions. The list of loss functions are a lot. Initially, even for activation functions, right now in 2025, CLU, Gilu, they are widely used. Nobody uses ReLU, people have stopped using ReLU, but…
+
+625
+01:41:09.900 --> 01:41:11.859
+Krish NAik: This is how things work.
+
+626
+01:41:13.240 --> 01:41:17.519
+Krish NAik: Alright, I think you guys can go for your tenure. Okay, and then,
+
+627
+01:41:17.740 --> 01:41:25.900
+Krish NAik: Because let me know, only I think I will be discussing 10 to 15 minutes more, that, BERT tokenization part.
+
+628
+01:41:26.060 --> 01:41:32.729
+Krish NAik: a little bit about that. So, should I complete it in one shot, then you guys go for the dinner, or after dinner, 10 to 15?
+
+629
+01:41:36.970 --> 01:41:41.229
+Krish NAik: Whichever is there, you can do that, because I think what's the time?
+
+630
+01:41:41.860 --> 01:41:45.199
+Krish NAik: time is there. So, after dinner.
+
+631
+01:41:45.530 --> 01:41:57.820
+Krish NAik: Then 1015, otherwise I can close it. Because a simple, I think I need to look into that particular blog. I will search it, and then I will keep it ready. Little bit with respect to those, token symbols, I'll be discussing about that part.
+
+632
+01:41:59.530 --> 01:42:04.380
+Krish NAik: Alright, guys, go for your dinner. Okay, I will start the timer.
+
+633
+01:42:07.110 --> 01:42:10.560
+Krish NAik: I think, time mark…
+
+634
+01:57:44.540 --> 01:57:47.030
+Krish NAik: Alright guys, I hope everyone is back.
+
+635
+01:58:06.300 --> 01:58:21.770
+Krish NAik: Alright, let's do a quick revision according to the paper that they have done, okay? And then we will, jump into that, tokenization part for BERT very specifically. Like, going forward, after Transformers, we'll be going through BERT and then GPT.
+
+636
+01:58:22.020 --> 01:58:26.120
+Krish NAik: Okay, so that will be the niche of sequence that we'll be following.
+
+637
+01:58:35.100 --> 01:58:39.479
+Krish NAik: Guys, let me know in the chat. Nobody has written backpack anything.
+
+638
+01:58:48.280 --> 01:58:50.029
+Krish NAik: Alright, alright, enrich.
+
+639
+01:58:50.180 --> 01:58:50.980
+Krish NAik: Fine.
+
+640
+01:58:52.300 --> 01:59:00.639
+Krish NAik: Alright, now, this entire thing we have decoded, okay. So, right now, in this particular,
+
+641
+01:59:01.430 --> 01:59:06.029
+Krish NAik: I think, Prashant, just write it in the chat, or later on I'll be taking that, okay?
+
+642
+01:59:06.990 --> 01:59:24.960
+Krish NAik: So, first of all, in the encoder, so N is equal to 6, now this value of 6 can be 12 also, 18 also, okay? Going forward in future architectures, we'll be looking. So, encoder is a composed stack of 6 layers, 6 identical layers, each layer has 2 sublayers.
+
+643
+01:59:25.040 --> 01:59:28.050
+Krish NAik: Okay, now these are the two sublayers that they are referring to.
+
+644
+01:59:30.150 --> 01:59:35.260
+Krish NAik: The first is the multi-attention, self-attention mechanism, and the second is the symbol.
+
+645
+01:59:35.460 --> 01:59:38.729
+Krish NAik: Pointwise, fully connected feed-forward network.
+
+646
+01:59:39.060 --> 01:59:50.440
+Krish NAik: Okay, so we employ a residual connection, so here also you can see the prospect from ResNet, that's why that residual connection around each of the two sublayers, followed by a normalization task.
+
+647
+01:59:51.400 --> 02:00:00.810
+Krish NAik: That is the output of each sublayer with layer non X plus sublayer X. So this is FX plus X, just like the function of, resonant, if you think about.
+
+648
+02:00:00.860 --> 02:00:20.660
+Krish NAik: Where sublayer X is the function implemented by the sublayer itself. To facilitate these residual connections of sublayers in the model, as well as the embedding layers, produce output of vector dimensions D model 512. So, in this paper, they are, taking the vector dimensions as 512.
+
+649
+02:00:21.070 --> 02:00:25.040
+Krish NAik: Okay? Now, these dimensions can change already, I've told you about that.
+
+650
+02:00:25.240 --> 02:00:39.190
+Krish NAik: Now, in the decoder, what happens? In the people they are talking about, the decoder is also composed of a stack of n is equal to 6 identical layers, the same thing that they are repeating here. It's very important.
+
+651
+02:00:39.190 --> 02:00:48.430
+Krish NAik: That, we don't change the number, like, in encoder is different, in decoder is different. We don't do in that way.
+
+652
+02:00:51.020 --> 02:00:54.809
+Krish NAik: So, right here, The first step.
+
+653
+02:00:54.990 --> 02:01:11.300
+Krish NAik: stack of N6 identical layers in layers to the, in layers. In addition to the two sublayers in each encoder layer, the decoder starts with a third sub-layer, which performs a multi-retention over the output of the encoder stack.
+
+654
+02:01:11.350 --> 02:01:17.420
+Krish NAik: Similar to the encoder, we employ a residual connection around each of the sublayers, followed by a layer normalization.
+
+655
+02:01:17.690 --> 02:01:22.950
+Krish NAik: We also modify the self-attentions sublayer in the decoder stack to prevent
+
+656
+02:01:22.960 --> 02:01:41.930
+Krish NAik: positions from attending to subsequent positions. Now, this is where that masked line… because in simple terms, if you really, say, okay, now this is that mask representation. Now, this masking, combined with the fact that the output embeddings are offset by one position.
+
+657
+02:01:41.990 --> 02:01:49.559
+Krish NAik: Ensures that the prediction of the position I can depend only on the known outputs at position less than I.
+
+658
+02:01:50.310 --> 02:02:05.710
+Krish NAik: Okay, now this is what that masking definition that they have done. In separate terms, if you just read the paper, it becomes much more harder to understand, but the core idea is it can look into itself or into the previous output.
+
+659
+02:02:07.560 --> 02:02:17.170
+Krish NAik: Then, with respect to the attention part, they have, taken here, so the scale.product and the multi-head attention, two things.
+
+660
+02:02:17.280 --> 02:02:26.570
+Krish NAik: Now, during the scaling, based on the dimension, like, root over DK, now this is the formula, again, the same thing that I have written in my notes.
+
+661
+02:02:26.780 --> 02:02:37.420
+Krish NAik: Okay, now, here, the dimension that matters, it's for the, dimension of the matrixes which are introduced for key query and value.
+
+662
+02:02:38.310 --> 02:02:55.269
+Krish NAik: We call our particular, attention, scaled dot product retention. Okay, now, they call it, so that's why our particular implementation. So, naturally, it's simple, pretty much a dot product retention that happens, but they have applied one level of scaling there.
+
+663
+02:02:55.270 --> 02:03:02.619
+Krish NAik: The input consists of keys and queries of dimensions DK. Now, this is DK, the query dimension. Through that, you are actually dividing it.
+
+664
+02:03:03.350 --> 02:03:11.089
+Krish NAik: And apply a short mass function to obtain the weights of the values. Okay, now according to the formula, we have already gone through this part.
+
+665
+02:03:11.820 --> 02:03:15.070
+Krish NAik: Now, with respect to the multi-attention part.
+
+666
+02:03:15.130 --> 02:03:33.610
+Krish NAik: Okay, in the multi-attention, these three things that comes into the picture, your three matrixes. Finally, on top of that, you perform a concatenation operation, and then you pass it through a linear layer. So that's why the WO representation, even in the blog which was mentioned.
+
+667
+02:03:35.850 --> 02:03:49.179
+Krish NAik: Okay, and now, directly, like, QK weight, we have mentioned it, but actually it can be broken down into, like, W, the weight matrix of Q, the weight matrix of K, and the weight matrix of
+
+668
+02:03:50.860 --> 02:03:57.380
+Krish NAik: Okay, now, a few applications are written, so the transformer uses multi-training 3 different ways.
+
+669
+02:03:57.470 --> 02:04:13.499
+Krish NAik: The first is in encoder-decoder attention layers, the query comes from the previous decoder layer, and the memory keys and the values from the output to the encoder. This allows every position in the decoder attend over all over positions in the input sequence.
+
+670
+02:04:13.580 --> 02:04:23.620
+Krish NAik: Now, what is the purpose of writing this particular line? You have to understand. Now, this is where standard multi-retention happens, where you can look into every position.
+
+671
+02:04:24.150 --> 02:04:36.250
+Krish NAik: But in the decoder, it knows about the previous information for the other language that you have actually shown. I think I have my camera is turned off, just wait.
+
+672
+02:04:37.880 --> 02:04:44.349
+Krish NAik: Okay? Now, this allows every position in the decoder to attend over all the positions in the input sequence.
+
+673
+02:04:44.790 --> 02:04:57.420
+Krish NAik: Okay, now, because your standard multi-year retention can look into every direction. So, generally, we use one term for standard multi-year retention. It is bi-directional.
+
+674
+02:04:57.420 --> 02:05:05.509
+Krish NAik: It can look everywhere, whereas your masked multi-retention is unidirectional. It can only look into one direction.
+
+675
+02:05:06.720 --> 02:05:19.060
+Krish NAik: to remember that particular fact. Okay, now this mimics the typical encoder-decoder retention mechanisms in sequence-to-sequence models, such as some references according in the…
+
+676
+02:05:19.200 --> 02:05:21.710
+Krish NAik: Reddit, which is available, 38 to a 9.
+
+677
+02:05:21.830 --> 02:05:29.109
+Krish NAik: The encoder contains self-attention layers. In self-attention layers, all the keys, values, and the queries come from the same place.
+
+678
+02:05:29.230 --> 02:05:44.379
+Krish NAik: In this case, the output of the previous layer in the encoder, each position in the encoder can attend to all the positions in the previous layer of the encoder. Now, this is an added benefit with multi-year attention, you can look anywhere. That's why it is bi-directional in nature.
+
+679
+02:05:44.890 --> 02:05:51.889
+Krish NAik: Similarly, cell potential layers in the decoders allow each position in the decoder to attend to all positions in the decoder.
+
+680
+02:05:51.890 --> 02:06:06.689
+Krish NAik: up, and including that position. So, that's why decoder up to, and including that. So, this is where you say that, okay, up to a certain range and itself. So, that's why including that position. So, itself that I generally see.
+
+681
+02:06:07.070 --> 02:06:18.179
+Krish NAik: We need to prevent leftward information flow in the decoder, I hope, everybody, to preserve the autoregressive property. Can you see here, very specifically about the masking that they have written?
+
+682
+02:06:20.900 --> 02:06:29.690
+Krish NAik: We implement this inside of a scale.product retention by masking to this minus infinity. Can you see here, setting to minus infinity?
+
+683
+02:06:30.240 --> 02:06:33.850
+Krish NAik: The same things that I have told you is mentioned here.
+
+684
+02:06:35.220 --> 02:06:52.479
+Krish NAik: Alright, then comes your point by speed-forward networks. Okay, now this is where a simple linear layer with an RELU activation function, this is exactly how it looks like. The input dimension is 512, and the output dimension that they have taken in this particular case is 2048.
+
+685
+02:06:52.800 --> 02:06:58.330
+Krish NAik: And generally, this dimension is much huge in other research papers.
+
+686
+02:06:58.510 --> 02:07:00.540
+Krish NAik: Where transformers is being used.
+
+687
+02:07:01.040 --> 02:07:17.860
+Krish NAik: Now, embeddings and sort max, okay. Now, with respect to embeddings, one is the general embeddings category that falls, like, through an embedding function, you create your actual ones, but for positional encodings, this part you can look into.
+
+688
+02:07:18.310 --> 02:07:31.389
+Krish NAik: Now, this is these formulas which has been kept away. Little bit, I will try to decode them for you. Since our model contains no recurrence and no convolutions, okay, it means that they are talking about
+
+689
+02:07:31.400 --> 02:07:44.860
+Krish NAik: no RNNs or no convolutions in order for the model to make use of the order of the sequence. We must inject some information about the relative or the absolute positions of the token in the sequence.
+
+690
+02:07:44.970 --> 02:07:54.530
+Krish NAik: To this end, we add positional encodings to the input embeddings at the bottom of the encoder and the decoder stats.
+
+691
+02:07:55.360 --> 02:07:59.939
+Krish NAik: The positional encodings have the same dimension D model as the embeddings.
+
+692
+02:07:59.950 --> 02:08:15.449
+Krish NAik: So that, the two can be summed up, or that concatenation operation that we have referred here. There are many choices of positional encodings, learns and fixed, as I told you, like, you can make it as a learning mechanism or a static formula also.
+
+693
+02:08:15.730 --> 02:08:23.390
+Krish NAik: So in this case, it's pretty much a static formula that they have taken. We use sine and cosine functions of different frequencies.
+
+694
+02:08:24.520 --> 02:08:35.759
+Krish NAik: For POS in the position, like, POS here, which is written, that is referred to the position, and then I is the index. Now, position of what?
+
+695
+02:08:35.760 --> 02:08:48.480
+Krish NAik: Where PO is, position of a token in a sequence that is referred to as posh, okay? That posh, or position in simple terms. And it is the dimension.
+
+696
+02:08:49.610 --> 02:08:55.739
+Krish NAik: Now, that is each dimension or positional encoding corresponds to a sinusoid.
+
+697
+02:08:56.020 --> 02:09:09.229
+Krish NAik: The wavelength forms a geometric progression from, like, 2 pi to this particular range that they have taken. So, 2 pi, we choose this function because we hypothetically it would allow the model to easily learn
+
+698
+02:09:09.230 --> 02:09:17.360
+Krish NAik: To attend by relative positions. Okay, now this positional encoding implementation will change, it is not fixed.
+
+699
+02:09:18.330 --> 02:09:28.780
+Krish NAik: So, that's why, again, I'm repeating. This is very specific to this particular paper. Going forward, people have done more research, and they have changed this particular implementation.
+
+700
+02:09:31.370 --> 02:09:35.059
+Krish NAik: Okay? And even they have done, so let me just take this one.
+
+701
+02:09:37.700 --> 02:09:40.889
+Krish NAik: Okay, just wait. Let's get back to our notes.
+
+702
+02:09:55.090 --> 02:10:06.429
+Krish NAik: Alright. So, right now, when you look into this part very specifically, okay, so what are the first parameters let's try to understand here inside this particular formula?
+
+703
+02:10:06.930 --> 02:10:26.530
+Krish NAik: What is the first parameter that you have posh? Posh refers to position of a token in a particular sequence that you have, okay? Now, because whenever you are feeding your training examples through that, it can really understand, like, what is the position at every point, in your particular sequence.
+
+704
+02:10:27.160 --> 02:10:31.209
+Krish NAik: it refers to the index. Now, index of what, guys? Just think.
+
+705
+02:10:31.570 --> 02:10:38.970
+Krish NAik: what can be the index? Because directly in the paper also, I, refers, basically to the dimension that they have told.
+
+706
+02:10:39.680 --> 02:10:43.509
+Krish NAik: But I want to think about as a dimension index.
+
+707
+02:10:44.420 --> 02:10:48.689
+Krish NAik: Okay, so first of all, let's try to break things up. I…
+
+708
+02:10:49.550 --> 02:10:53.149
+Krish NAik: is equal to… the first one, I will say, dimension index.
+
+709
+02:10:57.000 --> 02:10:58.750
+Krish NAik: What is dimension index?
+
+710
+02:10:59.000 --> 02:11:00.830
+Krish NAik: How many of you can understand?
+
+711
+02:11:00.960 --> 02:11:04.260
+Krish NAik: See, if I say my embedding is 512,
+
+712
+02:11:04.960 --> 02:11:08.590
+Krish NAik: In that 512 also, you have index yes or no.
+
+713
+02:11:11.940 --> 02:11:13.810
+Krish NAik: Yes or no?
+
+714
+02:11:14.690 --> 02:11:17.520
+Krish NAik: Okay, that index, it's trying to maintain it.
+
+715
+02:11:18.910 --> 02:11:24.420
+Krish NAik: Okay, and here, 2I, it has written. 2i means, 2…
+
+716
+02:11:24.900 --> 02:11:29.980
+Krish NAik: Generally, the first equation that you have So do I.
+
+717
+02:11:30.190 --> 02:11:32.300
+Krish NAik: This is for even conditions.
+
+718
+02:11:32.510 --> 02:11:34.859
+Krish NAik: And this is for odd conditions.
+
+719
+02:11:35.910 --> 02:11:39.689
+Krish NAik: Okay? Now, even position or odd position, based on that.
+
+720
+02:11:40.660 --> 02:11:44.589
+Krish NAik: Alright, now, 512, then you have your…
+
+721
+02:11:45.950 --> 02:11:48.269
+Krish NAik: What is the next thing? You have your D model.
+
+722
+02:11:52.080 --> 02:11:54.730
+Krish NAik: D model refers to the embedding length.
+
+723
+02:11:58.040 --> 02:12:01.040
+Krish NAik: And what is the embedding length? 512 in our case.
+
+724
+02:12:02.110 --> 02:12:05.429
+Krish NAik: Okay, and I think Posh, I've already told.
+
+725
+02:12:07.700 --> 02:12:09.320
+Krish NAik: position.
+
+726
+02:12:23.550 --> 02:12:35.659
+Krish NAik: Now, these are the main things. Now, why sinusoid that they have used? Okay, in simple terms, one is periodicity, because they have certain features which they feel that it is good.
+
+727
+02:12:38.270 --> 02:12:46.879
+Krish NAik: periodic functions, or I'm writing the properties of that. Okay, and generally, if it is periodic function, they will be having constrained values.
+
+728
+02:12:50.180 --> 02:12:52.650
+Krish NAik: Which was actually required.
+
+729
+02:12:55.420 --> 02:12:56.350
+Krish NAik: Is that right?
+
+730
+02:12:56.490 --> 02:13:13.379
+Krish NAik: So, this is the meme, I can say. Now, it actually helps you work with your longer sequences also. That is also… I can, say that, it is one of the important features as compared to
+
+731
+02:13:13.680 --> 02:13:23.730
+Krish NAik: RNN list, where shorter sequences works. But because of this positional encoding, it can't remember an index of a certain token from longer sequence also.
+
+732
+02:13:24.430 --> 02:13:30.459
+Krish NAik: Okay, so that is the other benefit that you do have. So these are a few of the generic properties.
+
+733
+02:13:31.740 --> 02:13:38.739
+Krish NAik: Perfect. Now, let's get back to our… I mean, moves.
+
+734
+02:13:41.640 --> 02:13:42.520
+Krish NAik: Okay.
+
+735
+02:13:46.460 --> 02:14:02.099
+Krish NAik: Okay, now they have, told everything with respect to why attention, why self-attention, what type of training data, and their optimization, what type of optimizer that they have used, what type of regularization technique. So these are all training strategies.
+
+736
+02:14:02.190 --> 02:14:13.950
+Krish NAik: Okay, we call them as training strategies in every… according to their own implementation that they have tested, but it's not necessary to work. Like, when I'll be doing all the practicals, my strategy will be different.
+
+737
+02:14:16.140 --> 02:14:25.100
+Krish NAik: Alright, now, immediately, we have done these things. Now, going… this is a task, please take it. Please read the entire paper at least once.
+
+738
+02:14:26.700 --> 02:14:34.960
+Krish NAik: If you know the mean paper, it becomes much easier, and from this paper in your interview, questions will be asked.
+
+739
+02:14:36.720 --> 02:14:43.209
+Krish NAik: If you say that you are a deep learning engineer, you are a Gen AI engineer, any role, any position.
+
+740
+02:14:43.630 --> 02:14:49.249
+Krish NAik: Even for machine learning engineer, if anyone will say I'm a data scientist for every position that comes.
+
+741
+02:14:49.610 --> 02:15:05.669
+Krish NAik: go through this paper. This is the main paper. After that, I'll be talking about the BERT paper, GPT paper. Those people are also important, but this is… that entire journey, I think, started from this fundamental paper. Okay, so read this paper at least.
+
+742
+02:15:06.000 --> 02:15:14.160
+Krish NAik: A lot of things that you might not decode in the first initial step, simply use AI, try to decode the stuff at any point of time.
+
+743
+02:15:16.930 --> 02:15:24.460
+Krish NAik: Because from your interview, it's very important. If you cannot answer this, just like if I take an interview, somebody cannot answer me this.
+
+744
+02:15:24.560 --> 02:15:28.460
+Krish NAik: This is just, like, the basic expectation from a student.
+
+745
+02:15:30.030 --> 02:15:35.569
+Krish NAik: And at least do the pen-paper writing, because even I'll be sharing the notes, so do it by yourself.
+
+746
+02:15:37.860 --> 02:15:49.350
+Krish NAik: Alright, now this is the other blog that I'll be talking about. This is with respect to BERT. I'll be teaching you BERT, but I'm just giving a high-level intuition with respect to the tokenization part.
+
+747
+02:15:52.240 --> 02:15:56.609
+Krish NAik: Ravi, Vasa is asking, please share the link of the paper, alright.
+
+748
+02:16:00.050 --> 02:16:03.360
+Krish NAik: You could just wait, I think, those two panelists just…
+
+749
+02:16:04.160 --> 02:16:07.870
+Krish NAik: This is the blog, and then this is the link of the paper.
+
+750
+02:16:08.740 --> 02:16:10.419
+Krish NAik: I think they filled the one.
+
+751
+02:16:20.400 --> 02:16:22.560
+Krish NAik: Okay, so both the things I have shared.
+
+752
+02:16:26.220 --> 02:16:39.380
+Krish NAik: All right. Now, a little bit about this, so that you understand, in a particular language model, how EOS and SOS works, okay? All right. So, right now, this example is with respect to birth.
+
+753
+02:16:39.900 --> 02:16:46.919
+Krish NAik: Okay, and As you can see, a pretty much old one right now.
+
+754
+02:16:49.020 --> 02:17:03.940
+Krish NAik: So, Hagen form, the transformer's package, input representation in a bird, how it happens, okay? So, for example, if you want to do a classification task, or an NSP, fill in the blanks, these type of the tasks, which can be done with respect to BERT part.
+
+755
+02:17:04.860 --> 02:17:12.770
+Krish NAik: Okay, so just wait. I think, Prashant, you have, raised your hand. I will take your question, then I can go. Alright?
+
+756
+02:17:13.160 --> 02:17:14.299
+Krish NAik: Yes, Prashant.
+
+757
+02:17:16.959 --> 02:17:18.049
+Krish NAik: Rashant?
+
+758
+02:17:23.360 --> 02:17:25.869
+Krish NAik: Prashant, I asked you to unmute.
+
+759
+02:17:33.100 --> 02:17:35.799
+Krish NAik: And I'll write no response from him.
+
+760
+02:17:37.190 --> 02:17:41.039
+Krish NAik: You can write it in the chat if you have some audio issues.
+
+761
+02:17:46.840 --> 02:17:51.219
+Krish NAik: Multi-head inputters instead of sequential inputers.
+
+762
+02:17:51.889 --> 02:17:57.230
+Krish NAik: Multi-head encoders we don't use. I'm not able to see the second link.
+
+763
+02:18:01.100 --> 02:18:07.239
+Krish NAik: Alright, just wait. I think I've shared the links, please, just, let me know, just wait.
+
+764
+02:18:07.750 --> 02:18:13.390
+Krish NAik: This is the illustrated Transformer. This is the research paper link.
+
+765
+02:18:14.629 --> 02:18:16.660
+Krish NAik: Okay, and this is the blog link.
+
+766
+02:18:16.820 --> 02:18:18.719
+Krish NAik: That I'm discussing right now.
+
+767
+02:18:22.120 --> 02:18:22.850
+Krish NAik: All right.
+
+768
+02:18:23.690 --> 02:18:24.930
+Krish NAik: No,
+
+769
+02:18:25.020 --> 02:18:42.329
+Krish NAik: it's saying that the BERT tokenization and the importing exactly how it works. So, right now, in BERT models, they have very specific tokens. So, right now, as I told SOS, EOS, these are specific type of tokens, okay? And with each token, there is a number which is attached.
+
+770
+02:18:42.410 --> 02:18:58.100
+Krish NAik: So right now, in Bird, they have the CLS token and the separation token. Okay, so for a classification task, a single vector representing the whole input sequence is needed to be fed into a classifier. Now, this is what happens in every type of classification task.
+
+771
+02:18:58.180 --> 02:19:08.520
+Krish NAik: you'll be having your sentence vector, okay, and with that, you'll be attaching. So in BERT, the decision is that the hidden state of the first token is taken to represent the whole sentence.
+
+772
+02:19:08.920 --> 02:19:26.340
+Krish NAik: Okay, now to achieve this, an additional token has to be added manually to the input sequence. Now, these things are generally done automatically by Agilface. We don't do it manually, but I'm just showing you that part. Now, similarly, you have your padding tokens. I'll be talking about these tokens when I discuss what
+
+773
+02:19:26.510 --> 02:19:31.959
+Krish NAik: But, first of all, let's try to understand by looking through the code. So, what has happened?
+
+774
+02:19:33.100 --> 02:19:39.940
+Krish NAik: Now, this is a sentence, okay? Now, when you look into the sentence and you try to convert them into vectors.
+
+775
+02:19:40.590 --> 02:19:45.260
+Krish NAik: Can I say that for every word there will be a corresponding number? Yes or no?
+
+776
+02:19:48.459 --> 02:20:01.609
+Krish NAik: By default, that's how things work. For every token, you will be having a corresponding number, okay? Now, generally, these numbers will be in floating values. For your example, it has been taken as numbers.
+
+777
+02:20:03.310 --> 02:20:04.710
+Krish NAik: No,
+
+778
+02:20:05.930 --> 02:20:08.219
+Krish NAik: Okay, so let's look into this one.
+
+779
+02:20:08.640 --> 02:20:27.730
+Krish NAik: So, this is the original sentence. Let's learn deep learning. This is the tokenized form of the sentence. Let's… okay, so after performing a tokenization operation, that they have broken into it. Now, in the initial part they are doing, they are adding that CLS part. It means that it refers to a start of a sequence right now.
+
+780
+02:20:27.820 --> 02:20:40.439
+Krish NAik: Okay, and then you have the SEP token. SEP token refers to the end of the center. So, every model has its own token, you have to understand. Generally, these tokens, if I say BERT, these are followed by the BERT family.
+
+781
+02:20:41.060 --> 02:20:58.840
+Krish NAik: Okay, but family, distilled bot. Okay, then you have your… so many type of buds are there. Okay, Electra family is also using these tokens. So, multiple families are there, these families, but again, GPT doesn't use this, so that's why this is very specific to this.
+
+782
+02:20:59.130 --> 02:21:09.709
+Krish NAik: Now, I have added this token, okay? And once I have added this token, then when I try to do the next level, because here I have added one stop if adding is required.
+
+783
+02:21:09.840 --> 02:21:22.369
+Krish NAik: Padding is not always required, you have to understand, like, padding, it totally depends upon the sequence length. If you feel that, you can have multiple padding tokens. Padding tokens means you don't have any sequence after that.
+
+784
+02:21:22.990 --> 02:21:35.709
+Krish NAik: Okay, so here, just like in convolution, adding zeros, the same thing that happens here also. Now, you have to see, corresponding to every token, what is the number that has been attached. Now, these numbers, 2421, till this point.
+
+785
+02:21:36.610 --> 02:21:44.540
+Krish NAik: If I, really say. Yeah. Okay, so I feel that till this point, these are the actual numbers which were even generated here.
+
+786
+02:21:44.650 --> 02:21:54.239
+Krish NAik: If you look into the last one, 1124, or some… that numbers which have been converted. But for CLS token, the number is fixed to 101.
+
+787
+02:21:55.680 --> 02:21:58.870
+Krish NAik: For your padding token, the number is fixed, which is 0.
+
+788
+02:21:59.190 --> 02:22:02.500
+Krish NAik: For your separate token, the number is fixed, which is 102.
+
+789
+02:22:03.750 --> 02:22:18.010
+Krish NAik: Okay, another standard, this is your actual contract. Now, you can see, as this is also another type of symbol, like, exclamatory sign, the number is very close to, like, 106. Like, simply for hash also, they will be having a unique one.
+
+790
+02:22:18.010 --> 02:22:25.060
+Krish NAik: Okay, because these are pretty much symbols. Now, this is also apostrophe. For that, you have 112. Okay, so…
+
+791
+02:22:25.110 --> 02:22:33.889
+Krish NAik: based on this single, just, character, they will be much more closer to that range. So, initially, they have these unique IDs.
+
+792
+02:22:35.360 --> 02:22:44.160
+Krish NAik: So, this is very, very important. So, similarly, going forward for every model, we'll be talking about whenever we discuss, like, these type of operations.
+
+793
+02:22:45.820 --> 02:22:51.029
+Krish NAik: Now, Alu was telling today, whatever we learned, it is from the prospect of forward propagation, exactly like that.
+
+794
+02:22:51.340 --> 02:22:59.149
+Krish NAik: Generally, like, that entire backward propagation, nobody shows and transforms. It's not possible to show. That's why.
+
+795
+02:23:01.520 --> 02:23:10.799
+Krish NAik: Okay, so always remember this thing, so for every related language model, they have their own tokenization schema, that we call it.
+
+796
+02:23:10.800 --> 02:23:23.939
+Krish NAik: Okay, so according to the model that you are using it, by default, Hugging Cat takes off it. Really, you don't need to do anything, but if you're not working with Hugging Face, if you're working something from scratch, you need to do it by yourself.
+
+797
+02:23:29.020 --> 02:23:44.559
+Krish NAik: Learning is equal to learn, plus in this way, we will, will get added mathematically. Yes, mathematically means, there will be probably some type of embedding function, which will actually help you to convert them into that particular vector.
+
+798
+02:23:44.560 --> 02:23:51.429
+Krish NAik: But right now, I've converted into IDs for now. Later on, these IDs, I can pass it through an embedding function, and I can pass.
+
+799
+02:23:54.930 --> 02:24:09.519
+Krish NAik: So, that's a tokenization using the transformers package. Okay, so by default, these parameters will be included. Add special tokens is equal to true. It means that in the code, you will always have the option, but this will be by default on, sorry.
+
+800
+02:24:09.520 --> 02:24:15.620
+Krish NAik: So really, like, if you just pass encode plus, text is able to send. The rest of the things will be directly taken care of.
+
+801
+02:24:15.870 --> 02:24:29.660
+Krish NAik: Okay? So that's why, if you're working with Housen Phase, everything is automated. You don't need to worry about these things, but going forward, you need to take care. So, similarly in other models, when you have SOS, EOS tokens, they will have specific IDs attached to them.
+
+802
+02:24:35.030 --> 02:24:37.419
+Krish NAik: Alright guys, so in the next class.
+
+803
+02:24:37.650 --> 02:24:41.780
+Krish NAik: I will start writing each code from scratch.
+
+804
+02:24:41.980 --> 02:24:47.360
+Krish NAik: Okay, it means that your encoder blocks catch inside your encoder attention.
+
+805
+02:24:47.580 --> 02:24:57.460
+Krish NAik: Block scratch, multi-year retention scratch, that will be pretty much good. Because we have gone through the theory, now we need to take a practical way of doing the implementations.
+
+806
+02:24:57.910 --> 02:25:10.480
+Krish NAik: Okay, because theory is fine, but at the end of the day, you need to do the practicals, okay? So everything from scratch, we will try to code it, and the things which we don't want, for example, with respect to positional encodings, I don't want.
+
+807
+02:25:10.550 --> 02:25:23.729
+Krish NAik: Okay, I can do the scratch implementation, or the latest positional encoding approach. I can use a certain package, and I can do that. But other than that, everything will be pretty much scratch-based implementation using PyTorch.io.
+
+808
+02:25:24.310 --> 02:25:27.139
+Krish NAik: Okay? This entire thing, I will try to do it.
+
+809
+02:25:28.080 --> 02:25:37.259
+Krish NAik: Now, you, see, doing… the core idea is building the blocks. So I only be taking a big data set, that is not my purpose.
+
+810
+02:25:37.350 --> 02:25:49.190
+Krish NAik: My purpose will be building these foundational block for your transformers. Later on, when I'll be using, then directly I will pick up a pre-trained model, because you guys know internally what are the foundational stuff.
+
+811
+02:25:49.190 --> 02:25:59.719
+Krish NAik: So, first of all, let's start with the scratch part, then we will move ahead with respect to training. During training, we can pick up something, a smaller version of TinyGPT or something like that.
+
+812
+02:26:00.390 --> 02:26:04.880
+Krish NAik: Okay, because, initially I feel everything should be scratch-coated.
+
+813
+02:26:05.040 --> 02:26:11.319
+Krish NAik: Okay, so it will be better for you, to understand also.
+
+814
+02:26:13.310 --> 02:26:14.820
+Krish NAik: No, generally.
+
+815
+02:26:15.140 --> 02:26:16.940
+Krish NAik: Because the idea is.
+
+816
+02:26:17.170 --> 02:26:24.020
+Krish NAik: that core part. Because I don't think there is such one. You have to manually create that work.
+
+817
+02:26:26.150 --> 02:26:27.150
+Krish NAik: Okay.
+
+818
+02:26:29.110 --> 02:26:38.889
+Krish NAik: Generally, see, what I will do, I look. For example, when I will implement, okay, you know that, if I write a forward propagation in PyTorch.
+
+819
+02:26:39.020 --> 02:26:45.019
+Krish NAik: Okay, later on, for backward, I will just directly write that, backward propagation part.
+
+820
+02:26:45.840 --> 02:26:49.529
+Krish NAik: Okay, in code. So in code, when I do it, you will understand that part.
+
+821
+02:26:50.080 --> 02:26:54.689
+Krish NAik: When I say with respect to the code, it becomes a little bit much more clearer.
+
+822
+02:26:55.760 --> 02:27:06.329
+Krish NAik: Alrighty, guys, so now this part, please try to do revision 2 times, 3 times, 4 times, do more such, try to get, because I have used limited materials, you can look into much more.
+
+823
+02:27:06.330 --> 02:27:19.269
+Krish NAik: explanations, much more content is available. Try to grab those things, okay, and try to create your own content, because before interview, like, even if I'm going, I revise this at least in 10 minutes or 5 minutes.
+
+824
+02:27:19.320 --> 02:27:20.660
+Krish NAik: It is important.
+
+825
+02:27:22.130 --> 02:27:25.410
+Krish NAik: Okay, so please do that. It's very, very important.
+
+826
+02:27:25.510 --> 02:27:37.550
+Krish NAik: whatever the things, like, from last class, I… that's why I've taken that approach. Let's start with building something. And last Sunday, we took the intuition. Yesterday, we built the intuition.
+
+827
+02:27:37.770 --> 02:27:51.929
+Krish NAik: Okay, and today, once we have built it, then we can actually add it to other things also. So, similarly, take a step-by-step approach. First of all, why we do it, what was the purpose? In that way, try to explain it.
+
+828
+02:27:57.800 --> 02:28:04.139
+Krish NAik: Srini Ba, Serenity, again, see, I don't know, do you have the links to Notion? Because in every…
+
+829
+02:28:04.260 --> 02:28:07.230
+Krish NAik: I think, Moosh and I always keep that.
+
+830
+02:28:07.720 --> 02:28:11.240
+Krish NAik: Okay, so I think, my subscription…
+
+831
+02:28:17.780 --> 02:28:18.600
+Krish NAik: Truth.
+
+832
+02:28:19.030 --> 02:28:22.229
+Krish NAik: return on GI. This is the email ID.
+
+833
+02:28:28.320 --> 02:28:33.290
+Krish NAik: It's not krishnaikeAcademy.com. Krishnag.unitz.
+
+834
+02:28:35.870 --> 02:28:36.780
+Krish NAik: Me too.
+
+835
+02:28:38.280 --> 02:28:57.550
+Krish NAik: For every course, in my case, I will update this one, first one, I think 1st February, that part I have updated, okay, and after that, again, so… I think the notes, I have also attached it, and I think yesterday's notes and today's notes, because it's the same PDF, so directly I will upload that particular PDF also.
+
+836
+02:28:58.750 --> 02:29:03.100
+Krish NAik: I think the link is working, okay? Yes. The same PDF, I will update it.
+
+837
+02:29:07.130 --> 02:29:09.539
+Krish NAik: Similarly for the Iraq case also.
+
+838
+02:29:10.390 --> 02:29:14.620
+Krish NAik: Raul is asking, please share the Notion link. I think everybody has the Notion link, huh?
+
+839
+02:29:15.000 --> 02:29:16.070
+Krish NAik: If you guys?
+
+840
+02:29:16.330 --> 02:29:24.350
+Krish NAik: I've been… day one only, I told. Always, keep this link bookmarked.
+
+841
+02:29:28.550 --> 02:29:31.239
+Krish NAik: Okay, I've shared the link. Everybody please bookmark it.
+
+842
+02:29:34.470 --> 02:29:40.519
+Krish NAik: Alright, now, whatever the other things, I will be attaching it to it, okay, by the end of the class.
+
+843
+02:29:42.870 --> 02:29:55.099
+Krish NAik: Alright guys, so I think that for today, we are done. Next class, we will start with the practicals, okay? So just go through the content at least once, because, again, during coding, then you can actually relate to the stuff.
+
+844
+02:29:57.040 --> 02:30:06.190
+Krish NAik: Alright, so by the way, everyone, I think, who has the rest, so I can conclude the session for today. Okay, so let's meet on Wednesday.
+
+845
+02:30:06.240 --> 02:30:22.680
+Krish NAik: Little bit on Wednesday, we'll be talking, because I think, tuesday, I'll be traveling, let's see, like, Wednesday, if I can take the class. I think that I can take, initially, at least a little bit of encoder, and Saturday, little bit of decoder, then little bit of combination. So, step by step, I will take that off.
+
+846
+02:30:24.690 --> 02:30:26.270
+Krish NAik: Yeah, perfect.
+
+847
+02:30:27.610 --> 02:30:38.450
+Krish NAik: Alright, let me see, because something I need to discuss on Wednesday. Again, for Wednesday, I'm not sure, because, you know, for the last two Wednesdays, I have not taken any class, so let's see.
+
+848
+02:30:41.970 --> 02:30:50.539
+Krish NAik: Alright, fine, fine, Funkoj. All right, guys, so thanks for joining, okay? Bye-bye, everyone, good night. Let's meet on the next day.
+
